@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мен ұнатқан кітап 💛 — Менің Кітапханам</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Fredoka+One&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#3A86FF;--accent2:#1565c0;--bg:#F0F6FF;
+  --sky:linear-gradient(160deg,#b3d4ff 0%,#dbeeff 60%,#f0f9ff 100%);
+  --shadow:0 8px 32px rgba(58,134,255,.2);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;overflow-x:hidden;
+  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext y='28' font-size='28'%3E💛%3C/text%3E%3C/svg%3E"),auto;}
+.sky-bg{position:fixed;inset:0;z-index:0;background:var(--sky);}
+.cloud{position:fixed;z-index:1;opacity:.65;animation:floatCloud linear infinite;font-size:3rem;user-select:none;pointer-events:none;}
+@keyframes floatCloud{0%{transform:translateX(-150px);}100%{transform:translateX(110vw);}}
+.sparkle{position:fixed;z-index:1;font-size:1.3rem;animation:twinkle 2s ease-in-out infinite alternate;pointer-events:none;}
+@keyframes twinkle{from{opacity:.2;transform:scale(.8);}to{opacity:.9;transform:scale(1.2);}}
+
+/* NAV */
+.top-nav{position:relative;z-index:100;display:flex;align-items:center;gap:8px;
+  padding:12px 20px;background:rgba(255,255,255,.8);backdrop-filter:blur(10px);
+  box-shadow:0 2px 16px rgba(58,134,255,.14);flex-wrap:wrap;}
+.nav-home{font-size:1.8rem;text-decoration:none;transition:transform .2s;}
+.nav-home:hover{transform:scale(1.2) rotate(-8deg);}
+.nav-links{display:flex;gap:6px;flex-wrap:wrap;flex:1;}
+.nav-link{display:flex;align-items:center;gap:4px;padding:6px 12px;border-radius:50px;
+  text-decoration:none;font-weight:900;font-size:.75rem;color:#fff;transition:transform .2s,box-shadow .2s;white-space:nowrap;}
+.nav-link span{display:none;}@media(min-width:520px){.nav-link span{display:inline;}}
+.nav-link:hover{transform:scale(1.12) translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.18);}
+.n1{background:linear-gradient(135deg,#FF6B9D,#ff4081);}
+.n2{background:linear-gradient(135deg,#FF8C42,#f6502c);}
+.n3{background:linear-gradient(135deg,#A855F7,#7c3aed);}
+.n4{background:linear-gradient(135deg,#3A86FF,#1565c0);}
+.n5{background:linear-gradient(135deg,#00C9A7,#009688);}
+.n6{background:linear-gradient(135deg,#FFD93D,#f59e0b);color:#5c3d00;}
+.n7{background:linear-gradient(135deg,#FF4757,#c62828);}
+.n8{background:linear-gradient(135deg,#7BC67E,#2e7d32);}
+.nav-link.active{box-shadow:0 0 0 3px #fff,0 0 0 5px var(--accent);transform:scale(1.08);}
+
+/* HERO */
+.hero{position:relative;z-index:10;text-align:center;padding:36px 20px 10px;}
+.hero-title{font-family:'Fredoka One',cursive;font-size:clamp(2.2rem,6vw,4rem);color:#fff;
+  text-shadow:3px 4px 0 #3A86FF,6px 8px 0 rgba(0,0,0,.1);letter-spacing:2px;animation:bounceIn .9s cubic-bezier(.36,.07,.19,.97) both;}
+.hero-sub{font-size:1rem;color:#2a5da0;font-weight:700;margin-top:8px;animation:fadeUp .9s .3s both;}
+@keyframes bounceIn{0%{transform:scale(0) rotate(-6deg);opacity:0;}70%{transform:scale(1.08) rotate(2deg);opacity:1;}100%{transform:scale(1) rotate(0);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+/* CONTENT */
+.content{position:relative;z-index:10;max-width:960px;margin:30px auto 80px;padding:0 20px;}
+.card{background:#fff;border-radius:20px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:20px;animation:fadeUp .8s both;}
+.card-head{background:linear-gradient(135deg,#3A86FF,#1565c0);padding:18px 28px;display:flex;align-items:center;gap:14px;}
+.card-head .icon{font-size:2.2rem;}
+.card-head h2{font-family:'Fredoka One',cursive;color:#fff;font-size:1.5rem;}
+.card-body{padding:24px 28px;}
+
+/* ── Мақсаттар ── */
+.goals-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:4px;}
+.goal-item{background:linear-gradient(135deg,#3A86FF,#1565c0);border-radius:14px;padding:14px 16px;
+  color:#fff;font-size:.85rem;line-height:1.55;display:flex;align-items:flex-start;gap:8px;}
+.goal-item .gi{font-size:1.4rem;flex-shrink:0;}
+
+/* ── Кесте (table) ── */
+.books-table-wrap{overflow-x:auto;border-radius:14px;box-shadow:0 4px 16px rgba(58,134,255,.12);}
+.books-table{width:100%;border-collapse:collapse;font-size:.88rem;}
+.books-table thead tr{background:linear-gradient(135deg,#3A86FF,#1565c0);}
+.books-table thead th{color:#fff;font-family:'Fredoka One',cursive;font-size:.95rem;
+  padding:12px 16px;text-align:left;white-space:nowrap;}
+.books-table tbody tr{border-bottom:1px solid #dbeeff;transition:background .15s;}
+.books-table tbody tr:nth-child(even){background:#f5faff;}
+.books-table tbody tr:hover{background:#e8f2ff;}
+.books-table tbody td{padding:11px 16px;color:#2a4a7f;vertical-align:top;}
+.books-table tbody td:first-child{color:#3A86FF;font-weight:700;white-space:nowrap;}
+/* input-like cells */
+.books-table input-cell{display:block;min-height:26px;}
+
+/* ── Пайдасы (benefits) ── */
+.benefits-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:4px;}
+.benefit-item{background:#f5faff;border:2px solid #bee3ff;border-radius:14px;padding:14px 16px;
+  display:flex;align-items:flex-start;gap:10px;transition:transform .2s,box-shadow .2s;}
+.benefit-item:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(58,134,255,.15);}
+.benefit-item .bi{font-size:1.5rem;flex-shrink:0;}
+.benefit-item p{font-size:.85rem;color:#2a4a7f;line-height:1.55;}
+.benefit-item strong{color:#1565c0;display:block;margin-bottom:2px;font-size:.88rem;}
+
+.download-btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#3A86FF,#1565c0);
+  color:#fff;text-decoration:none;padding:13px 26px;border-radius:50px;font-family:'Fredoka One',cursive;
+  font-size:1rem;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 16px rgba(58,134,255,.3);}
+.download-btn:hover{transform:scale(1.07) translateY(-2px);box-shadow:0 10px 28px rgba(58,134,255,.4);}
+.download-btn .dl-icon{font-size:1.4rem;}
+.download-wrap{text-align:center;padding:8px 0 4px;}
+.grass-strip{position:fixed;bottom:0;left:0;right:0;z-index:2;font-size:2.5rem;text-align:center;pointer-events:none;user-select:none;letter-spacing:-4px;line-height:.8;}
+</style>
+</head>
+<body>
+<div class="sky-bg"></div>
+<div class="cloud" style="top:8%;animation-duration:20s;">☁️</div>
+<div class="cloud" style="top:17%;animation-duration:27s;animation-delay:-11s;font-size:2rem;">☁️</div>
+<div class="sparkle" style="top:14%;left:7%;animation-delay:.3s;">💙</div>
+<div class="sparkle" style="top:22%;left:93%;animation-delay:.7s;">💛</div>
+<div class="sparkle" style="top:67%;left:4%;animation-delay:1.1s;">⭐</div>
+<div class="sparkle" style="top:73%;left:96%;animation-delay:.5s;">✨</div>
+
+<nav class="top-nav">
+  <a href="index.html" class="nav-home">📚</a>
+  <div class="nav-links">
+    <a href="esse.html"         class="nav-link n1">✍️<span>Эссе</span></a>
+    <a href="batyrlar.html"     class="nav-link n2">⚔️<span>Батырлар</span></a>
+    <a href="fantasy.html"      class="nav-link n3">🚀<span>Story book</span></a>
+    <a href="favourite.html"    class="nav-link n4 active">💛<span>Кітаптар</span></a>
+    <a href="makal.html"        class="nav-link n5">🧩<span>Мақал-мәтелдер</span></a>
+    <a href="mazmunadama.html"  class="nav-link n6">📝<span>PIRLS</span></a>
+    <a href="sozdik.html"       class="nav-link n7">🔤<span>Сөздік</span></a>
+    <a href="akynjaz.html"      class="nav-link n8">🖊️<span>Ақын жазушылар</span></a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-title">💛 Мен ұнатқан кітаптар</div>
+  <div class="hero-sub">Оқыған кітаптарыңды жазып, білімің мен ойыңды дамыт! 📖</div>
+</header>
+
+<main class="content">
+
+  <!-- 1. Мақсаты -->
+  <div class="card" style="animation-delay:.1s;">
+    <div class="card-head"><span class="icon">🎯</span><h2>Мақсаты</h2></div>
+    <div class="card-body">
+      <div class="goals-grid">
+        <div class="goal-item"><span class="gi">📖</span><span>Оқылған шығарманы <strong>талдау</strong></span></div>
+        <div class="goal-item"><span class="gi">💡</span><span>Негізгі <strong>ойды анықтау</strong></span></div>
+        <div class="goal-item"><span class="gi">🧑‍🤝‍🧑</span><span>Кейіпкерлерге <strong>сипаттама беру</strong></span></div>
+        <div class="goal-item"><span class="gi">🗣️</span><span>Өз пікірін <strong>еркін жеткізу</strong></span></div>
+        <div class="goal-item"><span class="gi">❤️</span><span>Кітап оқуға <strong>қызығушылық қалыптастыру</strong></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Кітаптар кестесі -->
+  <div class="card" style="animation-delay:.2s;">
+    <div class="card-head"><span class="icon">📋</span><h2>Мен ұнатқан кітаптар — кесте</h2></div>
+    <div class="card-body">
+      <div class="books-table-wrap">
+        <table class="books-table">
+          <thead>
+            <tr>
+              <th>📅 Күні</th>
+              <th>📚 Кітаптың аты</th>
+              <th>✍️ Авторы</th>
+              <th>📝 Мазмұны</th>
+              <th>🧑 Кейіпкері</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>___</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>___</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>___</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>___</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>___</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>___</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>___</td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="download-wrap" style="margin-top:18px;">
+        <a href="doc/Мен_ұнатқан_кітаптар.docx" download class="download-btn">
+          <span class="dl-icon">📄</span>
+          Мен ұнатқан кітаптар.docx жүктеу
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Ертегі нұсқаулығының пайдасы -->
+  <div class="card" style="animation-delay:.35s;">
+    <div class="card-head"><span class="icon">🌟</span><h2>Ертегі оқудың пайдасы</h2></div>
+    <div class="card-body">
+      <div class="benefits-list">
+        <div class="benefit-item">
+          <span class="bi">📖</span>
+          <p><strong>Оқу сауаттылығы артады</strong>Ертегіні түсініп, мазмұнын ұғынады.</p>
+        </div>
+        <div class="benefit-item">
+          <span class="bi">🧠</span>
+          <p><strong>Ойлау және талдау дамиды</strong>Кейіпкерлердің іс-әрекетіне баға беруге үйренеді.</p>
+        </div>
+        <div class="benefit-item">
+          <span class="bi">✍️</span>
+          <p><strong>Жазу дағдысы қалыптасады</strong>Ойын жүйелі түрде дәптерге жеткізеді.</p>
+        </div>
+        <div class="benefit-item">
+          <span class="bi">💬</span>
+          <p><strong>Сөздік қоры көбейеді</strong>Жаңа сөздер мен көркем тіркестерді меңгереді.</p>
+        </div>
+        <div class="benefit-item">
+          <span class="bi">🧩</span>
+          <p><strong>Есте сақтау жақсарады</strong>Авторын, кейіпкерлерін есте сақтап жазады.</p>
+        </div>
+        <div class="benefit-item">
+          <span class="bi">🗣️</span>
+          <p><strong>Өзіндік пікір айтады</strong>"Түсінгенім" бөлімінде өз ойын білдіреді.</p>
+        </div>
+        <div class="benefit-item">
+          <span class="bi">❤️</span>
+          <p><strong>Кітапқа қызығушылық артады</strong>Ертегі арқылы оқуға ынтасы оянады.</p>
+        </div>
+        <div class="benefit-item">
+          <span class="bi">🤝</span>
+          <p><strong>Адамгершілік тәрбие</strong>Ертегідегі жақсы мен жаманды ажыратады.</p>
+        </div>
+        <div class="benefit-item">
+          <span class="bi">🎨</span>
+          <p><strong>Шығармашылық дамиды</strong>Кейіпкерлерді сипаттап, оқиғаны елестетеді.</p>
+        </div>
+        <div class="benefit-item">
+          <span class="bi">📓</span>
+          <p><strong>Жауапкершілікке үйренеді</strong>Дәптерді жүйелі жүргізуге дағдыланады.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</main>
+
+<div class="grass-strip">🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿</div>
+</body>
+</html>

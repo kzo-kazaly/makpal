@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PIRLS Тапсырмалары 📚 — Менің Кітапханам</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Fredoka+One&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#FFD93D;--accent2:#f59e0b;--bg:#FFFDF0;
+  --sky:linear-gradient(160deg,#fff5b3 0%,#fffbe6 60%,#fffdf0 100%);
+  --shadow:0 8px 32px rgba(245,158,11,.2);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;overflow-x:hidden;
+  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext y='28' font-size='28'%3E📝%3C/text%3E%3C/svg%3E"),auto;}
+.sky-bg{position:fixed;inset:0;z-index:0;background:var(--sky);}
+.cloud{position:fixed;z-index:1;opacity:.6;animation:floatCloud linear infinite;font-size:3rem;user-select:none;pointer-events:none;}
+@keyframes floatCloud{0%{transform:translateX(-150px);}100%{transform:translateX(110vw);}}
+.sparkle{position:fixed;z-index:1;font-size:1.3rem;animation:twinkle 2s ease-in-out infinite alternate;pointer-events:none;}
+@keyframes twinkle{from{opacity:.2;transform:scale(.8);}to{opacity:.9;transform:scale(1.2);}}
+
+/* NAV */
+.top-nav{position:relative;z-index:100;display:flex;align-items:center;gap:8px;
+  padding:12px 20px;background:rgba(255,255,255,.8);backdrop-filter:blur(10px);
+  box-shadow:0 2px 16px rgba(245,158,11,.14);flex-wrap:wrap;}
+.nav-home{font-size:1.8rem;text-decoration:none;transition:transform .2s;}
+.nav-home:hover{transform:scale(1.2) rotate(-8deg);}
+.nav-links{display:flex;gap:6px;flex-wrap:wrap;flex:1;}
+.nav-link{display:flex;align-items:center;gap:4px;padding:6px 12px;border-radius:50px;
+  text-decoration:none;font-weight:900;font-size:.75rem;color:#fff;transition:transform .2s,box-shadow .2s;white-space:nowrap;}
+.nav-link span{display:none;}@media(min-width:520px){.nav-link span{display:inline;}}
+.nav-link:hover{transform:scale(1.12) translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.18);}
+.n1{background:linear-gradient(135deg,#FF6B9D,#ff4081);}.n2{background:linear-gradient(135deg,#FF8C42,#f6502c);}
+.n3{background:linear-gradient(135deg,#A855F7,#7c3aed);}.n4{background:linear-gradient(135deg,#3A86FF,#1565c0);}
+.n5{background:linear-gradient(135deg,#00C9A7,#009688);}.n6{background:linear-gradient(135deg,#FFD93D,#f59e0b);color:#5c3d00;}
+.n7{background:linear-gradient(135deg,#FF4757,#c62828);}.n8{background:linear-gradient(135deg,#7BC67E,#2e7d32);}
+.nav-link.active{box-shadow:0 0 0 3px #fff,0 0 0 5px #f59e0b;transform:scale(1.08);}
+
+.hero{position:relative;z-index:10;text-align:center;padding:36px 20px 10px;}
+.hero-title{font-family:'Fredoka One',cursive;font-size:clamp(2.2rem,6vw,4rem);color:#5c3d00;
+  text-shadow:3px 4px 0 #FFD93D,6px 8px 0 rgba(0,0,0,.08);letter-spacing:2px;animation:bounceIn .9s cubic-bezier(.36,.07,.19,.97) both;}
+.hero-sub{font-size:1rem;color:#7c5700;font-weight:700;margin-top:8px;animation:fadeUp .9s .3s both;}
+@keyframes bounceIn{0%{transform:scale(0) rotate(-6deg);opacity:0;}70%{transform:scale(1.08) rotate(2deg);opacity:1;}100%{transform:scale(1) rotate(0);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+/* TAB SYSTEM */
+.content{position:relative;z-index:10;max-width:960px;margin:30px auto 80px;padding:0 20px;}
+.tab-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
+.tab-btn{padding:8px 16px;border-radius:50px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:900;font-size:.82rem;
+  background:#fff;color:#b07800;box-shadow:0 3px 10px rgba(245,158,11,.15);transition:all .2s;}
+.tab-btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(245,158,11,.25);}
+.tab-btn.active{background:linear-gradient(135deg,#FFD93D,#f59e0b);color:#5c3d00;box-shadow:0 4px 14px rgba(245,158,11,.35);}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+.card{background:#fff;border-radius:20px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:20px;animation:fadeUp .8s both;}
+.card-head{background:linear-gradient(135deg,#FFD93D,#f59e0b);padding:18px 28px;display:flex;align-items:center;gap:14px;}
+.card-head .icon{font-size:2.2rem;}
+.card-head h2{font-family:'Fredoka One',cursive;color:#5c3d00;font-size:1.4rem;}
+.card-body{padding:24px 28px;}
+
+/* Text block */
+.text-block{background:linear-gradient(135deg,#fffbe6,#fff9e0);border-left:5px solid #FFD93D;
+  border-radius:0 12px 12px 0;padding:18px 22px;margin:0 0 24px;font-size:.95rem;color:#333;line-height:1.85;}
+.text-block p{margin-bottom:10px;}
+.text-block p:last-child{margin-bottom:0;}
+
+/* Questions */
+.q-list{list-style:none;display:grid;gap:10px;margin-top:8px;}
+.q-item{display:flex;align-items:flex-start;gap:12px;background:#fff;border-radius:14px;
+  padding:12px 16px;box-shadow:0 3px 12px rgba(245,158,11,.1);border:1px solid #fff5b3;transition:transform .2s;}
+.q-item:hover{transform:translateX(4px);}
+.q-num{background:linear-gradient(135deg,#FFD93D,#f59e0b);color:#5c3d00;
+  font-family:'Fredoka One',cursive;font-size:1rem;width:32px;height:32px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(245,158,11,.3);}
+.q-text{font-size:.92rem;color:#444;line-height:1.6;padding-top:4px;}
+
+/* Info box */
+.info-box{background:linear-gradient(135deg,#e8f5e9,#f1f8e9);border-left:5px solid #7BC67E;
+  border-radius:0 12px 12px 0;padding:16px 20px;margin:16px 0;font-size:.9rem;color:#2e7d32;line-height:1.75;font-weight:700;}
+
+.grass-strip{position:fixed;bottom:0;left:0;right:0;z-index:2;font-size:2.5rem;text-align:center;pointer-events:none;user-select:none;letter-spacing:-4px;line-height:.8;}
+</style>
+</head>
+<body>
+<div class="sky-bg"></div>
+<div class="cloud" style="top:8%;animation-duration:22s;">☁️</div>
+<div class="cloud" style="top:16%;animation-duration:28s;animation-delay:-11s;font-size:2.2rem;">☁️</div>
+<div class="sparkle" style="top:13%;left:7%;animation-delay:.4s;">⭐</div>
+<div class="sparkle" style="top:21%;left:93%;animation-delay:.8s;">✨</div>
+<div class="sparkle" style="top:67%;left:4%;animation-delay:1.2s;">🌟</div>
+<div class="sparkle" style="top:73%;left:95%;animation-delay:.6s;">💫</div>
+
+<nav class="top-nav">
+  <a href="index.html" class="nav-home">📚</a>
+  <div class="nav-links">
+    <a href="esse.html"         class="nav-link n1">✍️<span>Эссе</span></a>
+    <a href="batyrlar.html"     class="nav-link n2">⚔️<span>Батырлар</span></a>
+    <a href="fantasy.html"      class="nav-link n3">🚀<span>Story book</span></a>
+    <a href="favourite.html"    class="nav-link n4">💛<span>Кітаптар</span></a>
+    <a href="makal.html"        class="nav-link n5">🧩<span>Мақал-мәтелдер</span></a>
+    <a href="mazmunadama.html"  class="nav-link n6 active">📝<span>PIRLS</span></a>
+    <a href="sozdik.html"       class="nav-link n7">🔤<span>Сөздік</span></a>
+    <a href="akynjaz.html"      class="nav-link n8">🖊️<span>Ақын жазушылар</span></a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-title">📚 PIRLS Тапсырмалары</div>
+  <div class="hero-sub">Ақпараттық мәтіндерді оқып, сұрақтарға жауап бер! 🔍</div>
+</header>
+
+<main class="content">
+
+  <div class="info-box">
+    📌 <strong>PIRLS</strong> — оқушылардың мәтінді түсіну және талдау дағдыларын тексеретін халықаралық бағалау жүйесі. Төмендегі мәтіндерді мұқият оқып, сұрақтарға жауап бер!
+  </div>
+
+  <!-- TAB BUTTONS -->
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="showTab('balyk')">🐟 Балықтар</button>
+    <button class="tab-btn" onclick="showTab('burkit')">🦅 Бүркіт</button>
+    <button class="tab-btn" onclick="showTab('pingvin')">🐧 Пингвиндер</button>
+    <button class="tab-btn" onclick="showTab('raushan')">🌹 Раушандар</button>
+    <button class="tab-btn" onclick="showTab('meduza')">🪼 Медузалар</button>
+    <button class="tab-btn" onclick="showTab('surikat')">🐾 Тату отбасы</button>
+    <button class="tab-btn" onclick="showTab('taskaka')">🐢 Сауыт астында</button>
+    <button class="tab-btn" onclick="showTab('jylan')">🐍 Жыланбалықтар</button>
+    <button class="tab-btn" onclick="showTab('narval')">🦷 Сойдақ тістер</button>
+    <button class="tab-btn" onclick="showTab('muiyz')">🦏 Мүйізтұмсық</button>
+    <button class="tab-btn" onclick="showTab('zebra')">🦓 Аяқтар мен тұяқтар</button>
+    <button class="tab-btn" onclick="showTab('shagala')">🐦 Қарқылдақ шағала</button>
+    <button class="tab-btn" onclick="showTab('japyrak')">🍃 Жапырақ неге жасыл?</button>
+    <button class="tab-btn" onclick="showTab('qasqyr')">🐺 Қасқыр</button>
+    <button class="tab-btn" onclick="showTab('muz')">🧊 Мұз</button>
+    <button class="tab-btn" onclick="showTab('mysyk')">🐱 Мысық</button>
+  </div>
+
+  <!-- 1. БАЛЫҚТАР -->
+  <div id="balyk" class="tab-content active">
+    <div class="card">
+      <div class="card-head"><span class="icon">🐟</span><h2>Балықтар</h2></div>
+      <div class="card-body">
+        <div class="text-block">
+          <p>Балық дегеніміз — омыртқалы су жануарлары. Оның жиырма мыңнан астам түрі бар. Балықтардың барлығы дерлік сүйекті балықтарға жатады. Тек 2-3 пайызы ғана шеміршекті болып есептеледі. Қазақстанның өзен-көлдерінде 180 түрлі балық бар. Қазіргі кездегі көптеген балық түрлері бес жүз мың жылдан бері тіршілік етіп келе жатыр.</p>
+          <p>Ең кішкентай балықтардың көлемі 1 сантиметрден аспайды, ол көбінесе аквариумда өсірілетін балықтар. Ұзындығы 20 метрге жететін балықтар да болады. Ал олардың салмағы бір жарым грамнан 12-14 тоннаға дейін жетеді. Балықтардың дені желбезекпен тыныс алады. Дегенмен, ауамен тыныс алуға бейім түрлері де кездеседі.</p>
+          <p>Балық адам ағзасы үшін өте пайдалы. Балықтың еті мен уылдырығы ғана емес, кей түрлерінің терісі де пайдаланылады. Алабұға — жыртқыш балық. Жоны күңгірт жасыл, екі бүйірі көлденең қара жолақты, бауыры ақшыл сары. Өзен-көлдерде өніп өседі. Дене тұрқы 30-50 сантиметр, салмағы бір жарым келі. Бекіре — сырт қабығы бұдыршақты, тұмсығы қысқа балық, дене тұрқы 2 метрден астам, салмағы кейде 80 келіге жетеді. Каспи теңізінде өседі, елу жылдай өмір сүреді.</p>
+        </div>
+        <ul class="q-list">
+          <li class="q-item"><div class="q-num">1</div><div class="q-text">Балықтар қандай отрядқа жатады?</div></li>
+          <li class="q-item"><div class="q-num">2</div><div class="q-text">Балықтардың қанша түрі бар?</div></li>
+          <li class="q-item"><div class="q-num">3</div><div class="q-text">Қазақстанның өзен-көлдерінде балықтардың қанша түрі бар?</div></li>
+          <li class="q-item"><div class="q-num">4</div><div class="q-text">Ең кішкентай балықтардың көлемі қандай және олар қайда болады?</div></li>
+          <li class="q-item"><div class="q-num">5</div><div class="q-text">Ең үлкен балықтардың ұзындығы және олардың салмағы?</div></li>
+          <li class="q-item"><div class="q-num">6</div><div class="q-text">Балықтар қалай тыныс алады?</div></li>
+          <li class="q-item"><div class="q-num">7</div><div class="q-text">Балықтардың адам ағзасына пайдасы?</div></li>
+          <li class="q-item"><div class="q-num">8</div><div class="q-text">Алабұға қандай балық?</div></li>
+          <li class="q-item"><div class="q-num">9</div><div class="q-text">Алабұғаның салмағы, көлемі, түр-түсі қандай болады?</div></li>
+          <li class="q-item"><div class="q-num">10</div><div class="q-text">Бекіре туралы не білесіз?</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. БҮРКІТ -->
+  <div id="burkit" class="tab-content">
+    <div class="card">
+      <div class="card-head"><span class="icon">🦅</span><h2>Бүркіт</h2></div>
+      <div class="card-body">
+        <div class="text-block">
+          <p>Құстардың ішінде қазақ халқының қадірлейтіні – бүркіт. Қасиетті құс аққу мен жыртқыш құс бүркіт қана екіден артық жұмыртқаламайды. Бүркіт ұясын ең биік ағаштың басына, тау шыңдарының ең биік төбесіне салады. Сондықтан да, бүркіттің балапандары ыстық пен суыққа шынығып, сомдалып өседі.</p>
+          <p>Тау бүркіті қазақ үшін бағалырақ. Ол қырағы да, өжет те, алғыр да. Ең алғыр бүркітті қазақ «таудың ақиығы» деп атайды. «Қарақұс» тектес бүркіттің түсі қарасұр келеді. Халық оны «Қарақұс қайырғанмен бүркіт болмас» деп әжуалайды.</p>
+          <p>Бүркіттің көбі қоян, қарсақ, борсық, түлкі сияқты ұсақ аңдарға түседі. Алар аңын көрген бүркіт әуелі аспанға шырқай көтеріледі. Алатын жеміне жоғарыдан төмен қарай түйіледі. Бүркіттің қас жауы – түтін. Кеудесін түтін шалса, табанда өледі.</p>
+        </div>
+        <ul class="q-list">
+          <li class="q-item"><div class="q-num">1</div><div class="q-text">Қазақ халқы қандай құстарды қадірлейді?</div></li>
+          <li class="q-item"><div class="q-num">2</div><div class="q-text">Қандай құстар екіден артық жұмыртқаламайды?</div></li>
+          <li class="q-item"><div class="q-num">3</div><div class="q-text">Бүркіт ұясын қайда салады?</div></li>
+          <li class="q-item"><div class="q-num">4</div><div class="q-text">Бүркіттің балапандары неліктен ыстық пен суыққа шыдамды болып келеді?</div></li>
+          <li class="q-item"><div class="q-num">5</div><div class="q-text">Тау бүркіті қандай болады?</div></li>
+          <li class="q-item"><div class="q-num">6</div><div class="q-text">Ең алғыр бүркітті қазақ қалай атайды?</div></li>
+          <li class="q-item"><div class="q-num">7</div><div class="q-text">Қарақұс тектес бүркіттің түсі қандай болады?</div></li>
+          <li class="q-item"><div class="q-num">8</div><div class="q-text">Халық қарақұсты қалай әжуалайды?</div></li>
+          <li class="q-item"><div class="q-num">9</div><div class="q-text">Бүркіт қандай аңдарға түседі?</div></li>
+          <li class="q-item"><div class="q-num">10</div><div class="q-text">Бүркіт ірі аңдарға түскенде қандай жағдайлар кездескен?</div></li>
+          <li class="q-item"><div class="q-num">11</div><div class="q-text">Алар аңын көрген бүркіт қандай әрекет жасайды?</div></li>
+          <li class="q-item"><div class="q-num">12</div><div class="q-text">Бүркіт кейде, қапылыста қандай жағдайға ұшыраған?</div></li>
+          <li class="q-item"><div class="q-num">13</div><div class="q-text">Бүркітті неден сақтау керек?</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. ПИНГВИНДЕР -->
+  <div id="pingvin" class="tab-content">
+    <div class="card">
+      <div class="card-head"><span class="icon">🐧</span><h2>Пингвиндер</h2></div>
+      <div class="card-body">
+        <div class="text-block">
+          <p>Императорлық пингвиндер — пингвиндер ішіндегі ең ірісі. Олар Антарктиданың жағалауын мекендейді. Жыл сайын күздің басында пингвиндер, қар мен мұздың үстімен шамамен 100 км жол жүреді. Ұрғашысы бір жұмыртқа салып, еркегіне береді де, өзі теңізге қайтады.</p>
+          <p>Еркегі жұмыртқаны табанымен ұстап, денесімен жылытады. Ол балапанның пайда болуын шыдамды күтіп, екі айдай ашығады. Кішкентай пингвин пайда болу сәтіне қарай ұрғашысы қайтып, ал еркегі жақсылап тамақтану үшін теңізге асығады.</p>
+          <p>Пингвиндер ұша алмайды, есесіне, керемет жүзеді және сүңгиді. Құрлықта ұзына бойы қақиып жүреді. Мұз бетімен етпеттеп, қанаттарымен итеріліп жиі сырғиды.</p>
+        </div>
+        <ul class="q-list">
+          <li class="q-item"><div class="q-num">1</div><div class="q-text">Пингвиндер ішіндегі ең ірісі қандай?</div></li>
+          <li class="q-item"><div class="q-num">2</div><div class="q-text">Императорлық пингвиндер қайда мекен етеді?</div></li>
+          <li class="q-item"><div class="q-num">3</div><div class="q-text">Жыл сайын күздің басында пингвиндер қанша км жол жүреді?</div></li>
+          <li class="q-item"><div class="q-num">4</div><div class="q-text">Ұрғашысының жұмыртқа салудағы іс-әрекетін жаз.</div></li>
+          <li class="q-item"><div class="q-num">5</div><div class="q-text">Еркек пингвин жұмыртқаны қалай қарайды және балапанның пайда болуын қалай күтеді?</div></li>
+          <li class="q-item"><div class="q-num">6</div><div class="q-text">Пингвиндерді сипаттап жаз.</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. РАУШАНДАР -->
+  <div id="raushan" class="tab-content">
+    <div class="card">
+      <div class="card-head"><span class="icon">🌹</span><h2>Миллиондаған раушандардың арғы тегі</h2></div>
+      <div class="card-body">
+        <div class="text-block">
+          <p>Итмұрын — көп таралған және бірден есте қалатын тау өсімдіктерінің бірі. Тамаша балды өсімдік, гүлдеген кезде оның бұталарына гүл қалың шығады. Осы кезде итмұрын маңынан мыңдаған жәндіктерді кездестіруге болады.</p>
+          <p>Ежелгі Русьте итмұрын жемісі ғажап әсерлі дәрі деп есептелген. Оны жинап, атлас пен барқытқа, бұлғын терісіне айырбастаған. Нақ осы итмұрын біздің өмірімізге көрік беріп жүрген барлық раушан сұрыптарын шығарып, таратуға негіз болған.</p>
+          <p>Халық сенімі бойынша, итмұрын — денсаулық, байлық пен табыстың символы болып саналады. Бала киіміне тағып қойған итмұрын жемісі нәрестені көзден және тілден қорғайды деген сенім болған. Оның гүлімен батырларды және патшаларды қарсы алған. Әйелдер мен қыздар оның жемісінен алқа таққан.</p>
+        </div>
+        <ul class="q-list">
+          <li class="q-item"><div class="q-num">1</div><div class="q-text">Итмұрын қандай өсімдік?</div></li>
+          <li class="q-item"><div class="q-num">2</div><div class="q-text">Қандай жағдайда итмұрынның маңына мыңдаған жәндіктер кездеседі?</div></li>
+          <li class="q-item"><div class="q-num">3</div><div class="q-text">Итмұрын жемісін ежелгі Русьте неге айырбастаған?</div></li>
+          <li class="q-item"><div class="q-num">4</div><div class="q-text">Не себепті итмұрын жемісін басқа затқа айырбастайды деп ойлайсың? Өз ойыңды жаз.</div></li>
+          <li class="q-item"><div class="q-num">5</div><div class="q-text">Итмұрынды ненің символы деп есептеген?</div></li>
+          <li class="q-item"><div class="q-num">6</div><div class="q-text">Баланы итмұрын жемісі неден қорғайды?</div></li>
+          <li class="q-item"><div class="q-num">7</div><div class="q-text">Итмұрынның гүлін не үшін қолданған?</div></li>
+          <li class="q-item"><div class="q-num">8</div><div class="q-text">Қазір раушан гүлдерді не үшін қолданады? Өз ойыңды жаз.</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. МЕДУЗАЛАР -->
+  <div id="meduza" class="tab-content">
+    <div class="card">
+      <div class="card-head"><span class="icon">🪼</span><h2>Қауіпті медузалар</h2></div>
+      <div class="card-body">
+        <div class="text-block">
+          <p>Теңіздерді мөлдір мақұлықтар — медузалар мекендейді. Олар аң аулау үшін жансыздандыратын уды қолданады. Медузаның қолшатырынан көптеген ұзын қармалауыштар шығып тұрады. Олардың улы, күйдіргіш клеткалары бар. Медузаның қармалауыштарына түскен ұсақ балықтар оның олжасы болып қалады.</p>
+          <p>Конус моллюсктерінің тілі ұсақ улы тістермен жабылған. Олардың уы адамға өте қауіпті. Циания (арыстан жалы) – суық теңіздерді мекендейтін өте улы медуза. Балықтар жүзген кезде, жүзбеқанаттарымен және құйрығы суды итереді. Медуза болса, ішіне су жинап, оны күшпен кері итереді, ал өзі алға жылжиды.</p>
+          <p>Физалия (португал кемешігі) — бұл бір ғана мақұлық емес, бірнеше организмдердің достастығы, шоғыры. Олардың бірі желкен, басқалары қармалауыш болып қызмет жасайды.</p>
+        </div>
+        <ul class="q-list">
+          <li class="q-item"><div class="q-num">1</div><div class="q-text">Медузалар қайда мекендейді?</div></li>
+          <li class="q-item"><div class="q-num">2</div><div class="q-text">Медузалар аң аулау үшін не қолданады?</div></li>
+          <li class="q-item"><div class="q-num">3</div><div class="q-text">Суық теңіздерді мекендейтін қандай медуза?</div></li>
+          <li class="q-item"><div class="q-num">4</div><div class="q-text">Медузаның жүзген кезіндегі іс-әрекетін сипаттап жаз.</div></li>
+          <li class="q-item"><div class="q-num">5</div><div class="q-text">Бірнеше организмдердің шоғырынан пайда болған медуза қалай аталады?</div></li>
+          <li class="q-item"><div class="q-num">6</div><div class="q-text">Олардың әрқайсысы қандай қызмет атқарады?</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. ТАТУ ОТБАСЫ -->
+  <div id="surikat" class="tab-content">
+    <div class="card">
+      <div class="card-head"><span class="icon">🐾</span><h2>Тату отбасы</h2></div>
+      <div class="card-body">
+        <div class="text-block">
+          <p>Сүтқоректілердің арасында мысалы, аюлар немесе жолбарыстар сияқты жеке өмір сүретін жануарлар бар. Бірақ сүтқоректілердің көбі үйір, отбасылы топтар немесе отбасы болып өмір сүреді. Топ ішіндегі өмір жыртқыштардың шабуылынан сенімді қорғануға немесе қауіпті дер кезінде білуге көмектеседі.</p>
+          <p>Сурикаттар – шұбалаң құйрықтылар тұқымдасына, жыртқыштар отрядына жататын сүтқоректі жануар. Олар Африканың оңтүстігін мекендейді. Бұл қызық аңдар үлкен отбасылық топ құрады. Ересектері бір-біріне жыбырлақ төлдеріне көз салуға көмектеседі.</p>
+          <p>Олар діңгек болып тұрып, алдыңғы табандарын қарнына қойып, сурикаттар үнемі бастарын жан-жаққа бұрып, қарауда болады. Қауіпті көре сала, ащы шыңғырып, тез індеріне тығылады.</p>
+        </div>
+        <ul class="q-list">
+          <li class="q-item"><div class="q-num">1</div><div class="q-text">Сүтқоректілер қалай өмір сүреді?</div></li>
+          <li class="q-item"><div class="q-num">2</div><div class="q-text">Сурикаттар қандай жануарлар?</div></li>
+          <li class="q-item"><div class="q-num">3</div><div class="q-text">Бұл аңдар қайда тіршілік етеді және қалай өмір сүреді?</div></li>
+          <li class="q-item"><div class="q-num">4</div><div class="q-text">Сурикаттар жауынан қалай қорғанады?</div></li>
+          <li class="q-item"><div class="q-num">5</div><div class="q-text">Сурикаттардың тұрысын сипаттап жаз.</div></li>
+          <li class="q-item"><div class="q-num">6</div><div class="q-text">Жыбырлақ төлдерін қалай қорғайды?</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. САУЫТ АСТЫНДА -->
+  <div id="taskaka" class="tab-content">
+    <div class="card">
+      <div class="card-head"><span class="icon">🐢</span><h2>Сауыт астында</h2></div>
+      <div class="card-body">
+        <div class="text-block">
+          <p>Тасбақалардың денесін үстінен және астынан қатты сауыттар қорғайды. Қауіп жағдайында көптеген тасбақалар сауыт ішіне денесін тұтас тартып енгізіп алады. Құрлық тасбақалары өсімдікпен қоректенеді. Суда өмір сүретін тасбақалар балық және басқа су мақұлықтарын аулайды.</p>
+          <p>Терісіндегі қайран қалдыратын өсінділер мен адырлы сауыты кайман тасбақасын теңіз түбінде көзге түсірмейді. Теңіз тасбақалары теңізде өмір сүреді. Жағаға жұмыртқа салу үшін тек ұрғашылары ғана шығады. Әр жыл сайын тек қана бір құмды жағаға қайтып келеді. Олар жүздеген километр жол жүзіп, өздері жарық көрген, мұхитта жоғалған аралдарды ғажап дәлдікпен тауып алады.</p>
+          <p>Теңіз тасбақалары – керемет және қажымас жүзгіштер. Олардың сауыты жеңіл. Ал алдыңғы жүзбеқанаттары ескекке ұқсаған.</p>
+        </div>
+        <ul class="q-list">
+          <li class="q-item"><div class="q-num">1</div><div class="q-text">Тасбақалардың денесін не қорғайды?</div></li>
+          <li class="q-item"><div class="q-num">2</div><div class="q-text">Не себепті тасбақалар сауыт ішіне денесін тұтас тартып енгізіп алады деп ойлайсың?</div></li>
+          <li class="q-item"><div class="q-num">3</div><div class="q-text">Құрлықта және суда өмір сүретін жануарлар немен қоректенеді?</div></li>
+          <li class="q-item"><div class="q-num">4</div><div class="q-text">Кайман тасбақасының қорғанышы не?</div></li>
+          <li class="q-item"><div class="q-num">5</div><div class="q-text">Теңіз тасбақаларының ұрғашысы жұмыртқа салу үшін не істейді?</div></li>
+          <li class="q-item"><div class="q-num">6</div><div class="q-text">Теңіз тасбақасын сипаттап жаз.</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. ЖЫЛАНБАЛЫҚТАР -->
+  <div id="jylan" class="tab-content">
+    <div class="card">
+      <div class="card-head"><span class="icon">🐍</span><h2>Жыланбалықтар</h2></div>
+      <div class="card-body">
+        <div class="text-block">
+          <p>Кәдімгі жыланбалық – жыланға ұқсас балық. Жыланбалықтар өзендерді мекендейді, ал уылдырық шашу үшін алыс мұхитқа жолға шығады. Осында уылдырықтан шабақтар өнеді. Теңіз ағыстары оларды Еуропа мен Африка жағаларына әкеледі. Сол жерде есейген жыланбалықтар олардың ата-анасы өмір сүрген өзендерге барады. Жас жыланбалықтар сарғыш реңін өзгертеді. Өсе келе, олар күміс түстес болады.</p>
+          <p>Жыланбалықтар уылдырық шашу үшін әлемнің әр түкпірінен Атлант мұхитының бір бөлігі саналатын Саргасс теңізіне жиналады. Ол жаққа жету үшін біреулері төрт, ал біреулері жеті мың километр жүзіп өтеді. Саргасс теңізіне жетіп, уылдырық шашқаннан кейін, жыланбалықтар өліп қалады.</p>
+        </div>
+        <ul class="q-list">
+          <li class="q-item"><div class="q-num">1</div><div class="q-text">Жыланбалықтар қайда мекендейді?</div></li>
+          <li class="q-item"><div class="q-num">2</div><div class="q-text">Жыланбалықтар уылдырық шашу үшін қайда барады?</div></li>
+          <li class="q-item"><div class="q-num">3</div><div class="q-text">Теңіз ағыстары оларды қайда апарады?</div></li>
+          <li class="q-item"><div class="q-num">4</div><div class="q-text">Жас жыланбалықтардың реңі қандай және өсе келе қандай түске айналады?</div></li>
+          <li class="q-item"><div class="q-num">5</div><div class="q-text">Жыланбалықтар уылдырық шашу үшін қайда жиналады және қанша км жүзіп өтеді?</div></li>
+          <li class="q-item"><div class="q-num">6</div><div class="q-text">Жыланбалықтар уылдырық шашқаннан кейін не себепті өліп қалады деп ойлайсың?</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. СОЙДАҚ ТІСТЕР -->
+  <div id="narval" class="tab-content">
+    <div class="card">
+      <div class="card-head"><span class="icon">🦷</span><h2>Сойдақ тістер</h2></div>
+      <div class="card-body">
+        <div class="text-block">
+          <p>Неке маусымында көптеген жануарлардың еркектері бір-біріне жауығады. Ұрғашысының ниетін өзіне аудару үшін болған сойдақ тістерін, мүйіздерін, тістерін, тұяқтарын қару ретінде қолданады.</p>
+          <p>Нарвал — нарвалдар тұқымдасына жататын, қара қоңыр түсті, теңбіл дақтары бар сүтқоректі. Нарвалдар көбінесе Солтүстік Мұзды мұхиттың Атлантика бөлігінде кездеседі. Нарвалдар сойдақ тістерін ұрғашылары үшін бәсеке сайысы кезінде қару ретінде қолданады. Адамдар нарвалдардың ұзын тістерімен, яғни «рапираларымен» сайысқандарын көп мәрте көрген.</p>
+          <p>Нарвалдар тісті науандар қатарына жатады. Олардың бар-жоғы екі ғана тісі бар және еркектерінде оның бірі тұмсық сияқты ұзын тіске айналады.</p>
+        </div>
+        <ul class="q-list">
+          <li class="q-item"><div class="q-num">1</div><div class="q-text">Нарвалдар қайда тіршілік етеді?</div></li>
+          <li class="q-item"><div class="q-num">2</div><div class="q-text">Нарвалдарды сипаттап жаз.</div></li>
+          <li class="q-item"><div class="q-num">3</div><div class="q-text">Нарвалдар сойдақ тістерін не үшін қолданады?</div></li>
+          <li class="q-item"><div class="q-num">4</div><div class="q-text">Нарвалдардың неше тісі бар?</div></li>
+          <li class="q-item"><div class="q-num">5</div><div class="q-text">Еркектерінің тістері неге айналады?</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. МҮЙІЗТҰМСЫҚ -->
+  <div id="muiyz" class="tab-content">
+    <div class="card">
+      <div class="card-head"><span class="icon">🦏</span><h2>Тұмсықтағы мүйіз</h2></div>
+      <div class="card-body">
+        <div class="text-block">
+          <p>Мүйізтұмсықтар — ірі шөпқоректі жануарлар. Олар Африка мен Азияны мекендейді. Олардың тұмсықтарында шынында да мүйіз бар. Олар тек өсімдікпен қоректенеді. Ал егер жыртқыштар шабуылдаса, мүйізтұмсықтар өздерінің сесті мүйіздерін қорғаныс үшін қолданады.</p>
+          <p>Қауіп төнген жағдайда ересек еркектері төлдерін айнала қоршап, тірі сақина құрады. Теңбіл гиеналар үйірімен аң аулайды. Мүйізтұмсықтар жыртқыштардың тиіскенін күтпей-ақ, өздері шабуылға шығады. Африкалық мүйізтұмсықтардың қара және ақ түрі бар, екі түрінің де түстері бірдейге жақын.</p>
+        </div>
+        <ul class="q-list">
+          <li class="q-item"><div class="q-num">1</div><div class="q-text">Мүйізтұмсықтар қандай жануарлар?</div></li>
+          <li class="q-item"><div class="q-num">2</div><div class="q-text">Олар қайда мекендейді?</div></li>
+          <li class="q-item"><div class="q-num">3</div><div class="q-text">Мүйізтұмсықтар мүйіздерін қандай жағдайда пайдаланады?</div></li>
+          <li class="q-item"><div class="q-num">4</div><div class="q-text">Төлдерін қалай жауларынан қорғайды?</div></li>
+          <li class="q-item"><div class="q-num">5</div><div class="q-text">Африкалық мүйізтұмсықтардың неше түрі бар?</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. АЯҚТАР МЕН ТҰЯҚТАР -->
+  <div id="zebra" class="tab-content">
+    <div class="card">
+      <div class="card-head"><span class="icon">🦓</span><h2>Аяқтармен тұяқтар</h2></div>
+      <div class="card-body">
+        <div class="text-block">
+          <p>Бейбіт жануарлардың алдыңғы аяқтары жыртқыштардан қашып құтылуға мүмкіндік береді. Алайда, қажет болған жағдайда аяғымен қатты тебу жақсы қорғаныс болуы мүмкін. Мысалы, Африкалық страустар мен зебралар тез жүгіргенімен қоймай, жыртқыштарға артқы аяқтарымен тебумен тойтарыс бере алады.</p>
+          <p>Зебраның аяқтарында үш саусақтан бар. Оның тек біреуі — соңында жалпақ тұяқ болатын ортан саусағы ғана жақсы дамыған. Зебра гиеналық иттердің үйірінен қорғана отырып, шабуылдаушыларды артқы аяқтарымен тебеді. Бұл соққылар жыртқышты жаралап қана қоймай, өлтіріп жіберуі де мүмкін.</p>
+        </div>
+        <ul class="q-list">
+          <li class="q-item"><div class="q-num">1</div><div class="q-text">Африкалық страустар мен зебралар жауынан қалай қорғанады?</div></li>
+          <li class="q-item"><div class="q-num">2</div><div class="q-text">Зебраның аяғында неше саусақ бар?</div></li>
+          <li class="q-item"><div class="q-num">3</div><div class="q-text">Әр саусағының қызметін жаз.</div></li>
+          <li class="q-item"><div class="q-num">4</div><div class="q-text">Зебраның соққылары жыртқышты қандай жағдайға соқтырады?</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12. ҚАРҚЫЛДАҚ ШАҒАЛА -->
+  <div id="shagala" class="tab-content">
+    <div class="card">
+      <div class="card-head"><span class="icon">🐦</span><h2>Полюстік қарқылдақ шағалалар</h2></div>
+      <div class="card-body">
+        <div class="text-block">
+          <p>Ұшу алыстығы бойынша рекорд полюстік қарқылдақ шағалаларға тиесілі. Солтүстік Мұзды мұхиттың жағасында өзінің балапандарын асырап өсіріп, Оңтүстік полюске, антарктикалық теңіздерге қыстауға жолға шығады. Көктемде полюстік қарқылдақ шағалалар Солтүстікке қайтады. Жыл ішінде құстар жер жүзін айналуға тең болатын саяхат жасайды.</p>
+          <p>Полюстік қарқылдақ шағала денесінің пішіні сүйір және ұзын сүйір қанаттары бар. Құстың айыр құйрығы ұшу бағытын тез ауыстыруға көмектеседі. Маусымдық ұшулар кезінде полюстік қарқылдақ шағалалар балықпен қоректенеді. Өз олжаларын өткір және берік тұмсығымен судан ұстап алады.</p>
+          <p>Қарқылдақ шағалалар ұя салмайды. Ұрғашысы ұялы шұңқырға екі шұбар жұмыртқа салады. Балапандарды ата-ананың екеуі де бағып-қағады.</p>
+        </div>
+        <ul class="q-list">
+          <li class="q-item"><div class="q-num">1</div><div class="q-text">Полюстік қарқылдақ шағалалар балапандарын қайда асырап, өсіреді?</div></li>
+          <li class="q-item"><div class="q-num">2</div><div class="q-text">Полюстік қарқылдақ шағалалар көктемде қайда қайтады?</div></li>
+          <li class="q-item"><div class="q-num">3</div><div class="q-text">Қарқылдақ шағаланың денесін сипаттап жаз.</div></li>
+          <li class="q-item"><div class="q-num">4</div><div class="q-text">Құстың айыр құйрығының қызметі қандай?</div></li>
+          <li class="q-item"><div class="q-num">5</div><div class="q-text">Маусымдық ұшулар кезінде қарқылдақ шағалалар немен қоректенеді және олжаларын қалай алады?</div></li>
+          <li class="q-item"><div class="q-num">6</div><div class="q-text">Ұрғашы қарқылдақ шағала қанша жұмыртқа салады?</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 13. ЖАПЫРАҚ НЕГЕ ЖАСЫЛ -->
+  <div id="japyrak" class="tab-content">
+    <div class="card">
+      <div class="card-head"><span class="icon">🍃</span><h2>Жапырақ неге жасыл?</h2></div>
+      <div class="card-body">
+        <div class="text-block">
+          <p>Маржан орманға баруды өте ұнататын. Бірде кәрі еменнің астына келіп тізе бүкті. «Бұл жапырақ біткен неліктен жасыл, үнемі бір-бірімен сыбырласып жатады, не айтар екен?» — деп ойлады Маржан. Кенет жапырақтардың сыбдыр қаққаны оған ақырын тіл қатқандай болып көрінді.</p>
+          <p>— Ей, кіш-ш-ш-кентай қыз! Сен біздің тілімізге түсінетін бе едің? — деп шуылдасты жапырақтар жоғарыдан. — Біздің тұла бойымыз ғажайып жасыл хлорофилл дәніне толы. Сондықтан да жасылмыз. Ол дәндер жай көзге көріне бермейді, өте ұсақ. Сөйтсе де мұндай дәннің әрбіреуін кішкентай зауыт деуге болады. Біздің қабығымыздың қатпарында орналасқан бұл кішкентай зауыттар бүкіл ағаш үшін тағам өндіріп отырады.</p>
+          <p>— Тамыр да ағашты қоректендіреді, — деді Маржан. — Тамырдың жайы өз алдына. Тамырсыз күн көру қиын, олар жерден суды сорып алып, ағашқа беріп отырады. Ал жапырақ ішіне орналасқан хлорофилл дәндері ауадан көмірқышқыл газын алады. Осы газ бен судан жаңа бұтақ, бүршік, қабыршақ жасауға арналған материалдар әзірлейді. Әрбір жапырақ, әрбір өсімдік үшін күн сәулесі — ең керекті нәрсе!</p>
+        </div>
+        <ul class="q-list">
+          <li class="q-item"><div class="q-num">1</div><div class="q-text">Маржан орманға баруды неге ұнатады деп ойлайсың?</div></li>
+          <li class="q-item"><div class="q-num">2</div><div class="q-text">Маржан жапырақтар туралы не ойлады?</div></li>
+          <li class="q-item"><div class="q-num">3</div><div class="q-text">Жапырақтар Маржанға не деп сыбырласты?</div></li>
+          <li class="q-item"><div class="q-num">4</div><div class="q-text">Жапырақтар не туралы әңгіме қозғады?</div></li>
+          <li class="q-item"><div class="q-num">5</div><div class="q-text">Жапырақтардың тұла бойы қандай дәнге толы екен?</div></li>
+          <li class="q-item"><div class="q-num">6</div><div class="q-text">Жапырақтардың айтуынша кішкентай зауыттар не үшін қажет?</div></li>
+          <li class="q-item"><div class="q-num">7</div><div class="q-text">Мәтінде өсімдік тамыры туралы не айтылды?</div></li>
+          <li class="q-item"><div class="q-num">8</div><div class="q-text">Маржанның ойынша зауыт жұмыс жасауы үшін оған не қажет?</div></li>
+          <li class="q-item"><div class="q-num">9</div><div class="q-text">Хлорофилл дәндері қандай жұмыс атқарады?</div></li>
+          <li class="q-item"><div class="q-num">10</div><div class="q-text">Титімдей хлорофилл дәнінен қандай өсімдіктер өсіп шығады екен?</div></li>
+          <li class="q-item"><div class="q-num">11</div><div class="q-text">Күн сәулесінің өсімдіктер үшін қандай маңызы бар екен?</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14. ҚАСҚЫР -->
+  <div id="qasqyr" class="tab-content">
+    <div class="card">
+      <div class="card-head"><span class="icon">🐺</span><h2>Қасқыр</h2></div>
+      <div class="card-body">
+        <div class="text-block">
+          <p>Дене бітіміне, жүндестігіне қарағанда да бұл нағыз үлкен, орман қасқырының өзі еді. Ит дегізетін — жалғыз-ақ жүнінің түсі. Мұның сырты қара қоңырлау да, бауыры мен шап тұсы қызғылт жирендеу. Бүйірі шабдарлау еді. Мойны ақ, мойнақтау болса да, онысы айқын емес.</p>
+          <p>Қасқыр бұлардың таудағы үйіне өздігінен келді. Ашығып, бұралып келісімен, бұлардың көзінше бір үй қоянын жеп қойды. Содан өзенге қарай бұралып барып, бір қарақат түбірінің көлеңкесіне жатып қалды. Уот Ирвин барса, ырылдап маңайлатпады. Оның әйелі Медж үлкен тегешті сүт пен нанға толтырып сыбаға апарса, оған да ырылдады. Қасқыр кісіге үйір болмайтын қияс төбет боп шықты.</p>
+          <p>Бір жолы Ирвин поездан терезеден қарап тұрса, өздерінің әнеугі қонағы жол жағалап жортып келеді. Шаршаған, үстін шаң басқан, бірақ қажу жоқ — екі жүз шақырымдай жол жүріпті. Ирвин қасқырды ұстап, таудағы үйге қайтарды. Бір жұмадай шынжырлап қойды. Ері мен әйелі кезек-кезек күтіп, барынша бәйек болды. Бірақ ол ылғи ырылдап қоя береді. Өзі еш уақытта үрмейді.</p>
+        </div>
+        <ul class="q-list">
+          <li class="q-item"><div class="q-num">1</div><div class="q-text">Дене бітіміне қарағанда бұл жыртқыш жануарды неге ұқсатты? Неліктен?</div></li>
+          <li class="q-item"><div class="q-num">2</div><div class="q-text">Бұл жануарды ит дегізетін белгісі қандай болды?</div></li>
+          <li class="q-item"><div class="q-num">3</div><div class="q-text">Орман қасқырының сыртқы бейнесін суреттеп жаз.</div></li>
+          <li class="q-item"><div class="q-num">4</div><div class="q-text">Еркек пен әйелдің бұл итті тым жақсы көрулеріне қандай себеп болған сияқты?</div></li>
+          <li class="q-item"><div class="q-num">5</div><div class="q-text">Қасқыр бұлардың таудағы үйіне қайдан пайда болды?</div></li>
+          <li class="q-item"><div class="q-num">6</div><div class="q-text">Ашығып келген қасқырдың әрекетін жаз.</div></li>
+          <li class="q-item"><div class="q-num">7</div><div class="q-text">Уот Ирвин мен оның әйелі Медждің қамқорлығына қасқырдың жасаған әрекетін толық жаз.</div></li>
+          <li class="q-item"><div class="q-num">8</div><div class="q-text">Өзен жағасына жайғасқан қияс төбеттің іс-қимылы жайында әңгімеле.</div></li>
+          <li class="q-item"><div class="q-num">9</div><div class="q-text">Қасқыр бітімдес қоңырқай иттің қайта оралуына не себеп болды?</div></li>
+          <li class="q-item"><div class="q-num">10</div><div class="q-text">Шаршаған қасқыр бітімдес ит қанша жол жүрген?</div></li>
+          <li class="q-item"><div class="q-num">11</div><div class="q-text">Ирвин қасқырды ұстап алу үшін не істеді?</div></li>
+          <li class="q-item"><div class="q-num">12</div><div class="q-text">Мәтіннен қайта оралған қасқыр мен Ирвин және оның әйелінің қарым-қатынастары жайында жазылған сөйлемдерді теріп жаз.</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 15. МҰЗ -->
+  <div id="muz" class="tab-content">
+    <div class="card">
+      <div class="card-head"><span class="icon">🧊</span><h2>Мұз — судың қатты күйі</h2></div>
+      <div class="card-body">
+        <div class="text-block">
+          <p>Жыл сайын қыс түскенде өзен және көлдердің суы қатып, мұзға айналғанын көріп жүрсіңдер. Бұл құбылыс Солтүстік және Оңтүстік Мұзды мұхиттың теңіздерінде анық байқалады. Судың қатуы біртіндеп жүреді. Алдымен жұқа қабыршақ мұз түзіледі. Ол біртіндеп қалыңдайды. Мұхит жиегіндегі мұз қабатының қалыңдығы кейде 2-3 м-ге дейін жетеді.</p>
+          <p>Су ағысының және желдің әсерінен мұз қабаты жарылып сынады, сең жүреді. Мұздың жеке бөліктері бір-бірімен соқтығысып, ірі мұз шоғырлары пайда болады. Мұндай мұз шоғырларында арнайы мұз жарғыш кемелер ғана жүзе алады. Осындай кемелер жасалғанға дейін адамдар Солтүстік полюске жете алмады.</p>
+          <p>Айсберг деп аталатын мұз таулары Антарктида материгі мен аралдарының мұздықтарынан бөлініп шығады. Ағыс оларды оңтүстікке қарай ағызып әкетеді. Айсбергтер айлап және жылдап, еріп біткенше жүзе береді. Кемелерге үлкен қауіп тудырады. Әдетте, айсбергтердің айналасын қалың тұман басып тұрады.</p>
+        </div>
+        <ul class="q-list">
+          <li class="q-item"><div class="q-num">1</div><div class="q-text">Судың неше күйі болады?</div></li>
+          <li class="q-item"><div class="q-num">2</div><div class="q-text">Өзен-көлдердің суы қатып, мұзға айналатын аймақты жаз.</div></li>
+          <li class="q-item"><div class="q-num">3</div><div class="q-text">Судың қатуы жайында болатын құбылысты жаз.</div></li>
+          <li class="q-item"><div class="q-num">4</div><div class="q-text">Мұхит жиегіндегі мұз қабатының қалыңдығы шамамен қанша болады?</div></li>
+          <li class="q-item"><div class="q-num">5</div><div class="q-text">Теңіз суларының қатуына не кедергі жасайды?</div></li>
+          <li class="q-item"><div class="q-num">6</div><div class="q-text">Мұз шоғыры қалай пайда болады?</div></li>
+          <li class="q-item"><div class="q-num">7</div><div class="q-text">Өзендер мен көлдерде кеме жүруін қиындататын жағдай?</div></li>
+          <li class="q-item"><div class="q-num">8</div><div class="q-text">Солтүстік мұхиттарда кемемен жүзу кезіндегі ең қауіпті нәрсе?</div></li>
+          <li class="q-item"><div class="q-num">9</div><div class="q-text">Айсберг мұзды таулары қайдан пайда болады?</div></li>
+          <li class="q-item"><div class="q-num">10</div><div class="q-text">«Ыдыстан төгілген жаңа қайнаған су, жерге төгілмей-ақ мұз болып қатып қалады» — деген мағынаны қалай түсінесің?</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 16. МЫСЫҚ -->
+  <div id="mysyk" class="tab-content">
+    <div class="card">
+      <div class="card-head"><span class="icon">🐱</span><h2>Мысық неге жиі-жиі жуынады?</h2></div>
+      <div class="card-body">
+        <div class="text-block">
+          <p>Үйдегі мысықтар ертеден кешке дейін жуынады да жатады. Оянысымен керіліп-созылып алады да, үсті-басын бастан-аяқ жалап шығады. Серуендер алдында да, үйге қайтып келген соң да, тамақ ішкен соң да жуынады. Мысықтар үстін жалаған кезде кірін кетіріп, тамақ қалдықтарынан тазартып қана қоймайды, денесінен шығып тұрған иісті де жояды. Мұның маңызы өте зор.</p>
+          <p>Сілеусін, барыс, қабылан, жолбарыс сияқты мысық тұқымдастарының барлығы жемін тасада жасырынып, аңдып тұрып ұстайды. Ит тұқымдас жабайы аңдар орман ішін кезіп, із кеседі де, ізімен қуа жөнеледі. Егер жемтігі олардың иісін сезіп қойса, мысықтар аш қалады. Әбден жуынып, тазарған мысық тышқан інінің аузында әлденеше сағат бойы аңдып отырады.</p>
+          <p>Иісі өзіне қорған болатын да аңдар бар. Мысалы, сасық күзен мен скунс иісі жағымсыз сұйық бөліп шығаратын бездері болады. Скунстер ол сұйығын қуып келе жатқан жауларына қарай дәлдеп шашып жібереді. Скунс бұл қаһарлы қаруын ерекше жағдайда ғана қолданады.</p>
+        </div>
+        <ul class="q-list">
+          <li class="q-item"><div class="q-num">1</div><div class="q-text">Мысықтар қай кезде жуынады?</div></li>
+          <li class="q-item"><div class="q-num">2</div><div class="q-text">Мысықтар үстін не себепті жалайды?</div></li>
+          <li class="q-item"><div class="q-num">3</div><div class="q-text">Мысықтар қорегін қалай табады?</div></li>
+          <li class="q-item"><div class="q-num">4</div><div class="q-text">Мысық тұқымдастарына нелер жатады?</div></li>
+          <li class="q-item"><div class="q-num">5</div><div class="q-text">Ит тұқымдастары мен мысық тұқымдастарының арасында жемтігін аулауында қандай айырмашылық бар?</div></li>
+          <li class="q-item"><div class="q-num">6</div><div class="q-text">Аңдардың үстінен шығатын иістері неге әсер етеді?</div></li>
+          <li class="q-item"><div class="q-num">7</div><div class="q-text">Иісі өзіне пайдалы аңдарды ата.</div></li>
+          <li class="q-item"><div class="q-num">8</div><div class="q-text">Сасық күзен мен скунстың бездері қандай қызмет атқарады?</div></li>
+          <li class="q-item"><div class="q-num">9</div><div class="q-text">Скунстер жауларынан қалай қорғанады?</div></li>
+          <li class="q-item"><div class="q-num">10</div><div class="q-text">Скунс қаруын қандай жағдайда қолданады?</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="grass-strip">🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+</body>
+</html>

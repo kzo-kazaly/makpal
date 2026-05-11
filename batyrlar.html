@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Батырлар жырын жаттату ⚔️ — Менің Кітапханам</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Fredoka+One&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#FF8C42;--accent2:#f6502c;--bg:#FFF9F0;
+  --sky:linear-gradient(160deg,#ffe4cc 0%,#fff4eb 60%,#fff9f0 100%);
+  --shadow:0 8px 32px rgba(255,140,66,.2);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;overflow-x:hidden;
+  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext y='28' font-size='28'%3E⚔️%3C/text%3E%3C/svg%3E"),auto;}
+.sky-bg{position:fixed;inset:0;z-index:0;background:var(--sky);}
+
+/* NAV */
+.top-nav{position:relative;z-index:100;display:flex;align-items:center;gap:8px;
+  padding:12px 20px;background:rgba(255,255,255,.75);backdrop-filter:blur(10px);
+  box-shadow:0 2px 16px rgba(255,140,66,.15);flex-wrap:wrap;}
+.nav-home{font-size:1.8rem;text-decoration:none;line-height:1;transition:transform .2s;}
+.nav-home:hover{transform:scale(1.2) rotate(-8deg);}
+.nav-links{display:flex;gap:6px;flex-wrap:wrap;flex:1;}
+.nav-link{display:flex;align-items:center;gap:4px;padding:6px 12px;border-radius:50px;
+  text-decoration:none;font-weight:900;font-size:.75rem;color:#fff;transition:transform .2s,box-shadow .2s;white-space:nowrap;}
+.nav-link span{display:none;}
+@media(min-width:520px){.nav-link span{display:inline;}}
+.nav-link:hover{transform:scale(1.12) translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.18);}
+.n1{background:linear-gradient(135deg,#FF6B9D,#ff4081);}
+.n2{background:linear-gradient(135deg,#FF8C42,#f6502c);}
+.n3{background:linear-gradient(135deg,#A855F7,#7c3aed);}
+.n4{background:linear-gradient(135deg,#3A86FF,#1565c0);}
+.n5{background:linear-gradient(135deg,#00C9A7,#009688);}
+.n6{background:linear-gradient(135deg,#FFD93D,#f59e0b);color:#5c3d00;}
+.n7{background:linear-gradient(135deg,#FF4757,#c62828);}
+.n8{background:linear-gradient(135deg,#7BC67E,#2e7d32);}
+.nav-link.active{box-shadow:0 0 0 3px #fff,0 0 0 5px var(--accent);transform:scale(1.08);}
+
+/* decorations */
+.cloud{position:fixed;z-index:1;opacity:.5;animation:floatCloud linear infinite;font-size:3rem;user-select:none;pointer-events:none;}
+@keyframes floatCloud{0%{transform:translateX(-150px);}100%{transform:translateX(110vw);}}
+.sparkle{position:fixed;z-index:1;font-size:1.3rem;animation:twinkle 2s ease-in-out infinite alternate;pointer-events:none;user-select:none;}
+@keyframes twinkle{from{opacity:.2;transform:scale(.8);}to{opacity:.9;transform:scale(1.2);}}
+
+/* HERO */
+.hero{position:relative;z-index:10;text-align:center;padding:36px 20px 10px;}
+.hero-title{font-family:'Fredoka One',cursive;font-size:clamp(1.6rem,4.5vw,3rem);color:#fff;
+  text-shadow:3px 4px 0 #FF8C42,6px 8px 0 rgba(0,0,0,.1);letter-spacing:1px;
+  animation:bounceIn .9s cubic-bezier(.36,.07,.19,.97) both;}
+.hero-sub{font-size:1rem;color:#a0532a;font-weight:700;margin-top:8px;animation:fadeUp .9s .3s both;}
+@keyframes bounceIn{0%{transform:scale(0) rotate(-6deg);opacity:0;}70%{transform:scale(1.08) rotate(2deg);opacity:1;}100%{transform:scale(1) rotate(0);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+/* CONTENT */
+.content{position:relative;z-index:10;max-width:880px;margin:30px auto 80px;padding:0 20px;}
+
+.card{background:#fff;border-radius:20px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:20px;animation:fadeUp .8s both;}
+.card-head{background:linear-gradient(135deg,#FF8C42,#f6502c);padding:18px 28px;display:flex;align-items:center;gap:14px;}
+.card-head .icon{font-size:2.2rem;}
+.card-head h2{font-family:'Fredoka One',cursive;color:#fff;font-size:1.5rem;}
+.card-body{padding:24px 28px;}
+
+.def-box{background:linear-gradient(135deg,#fff4eb,#ffe4cc);border-left:5px solid #FF8C42;
+  border-radius:0 12px 12px 0;padding:16px 20px;margin:0 0 20px;font-size:1rem;color:#444;line-height:1.75;}
+
+/* Audio player */
+.audio-wrap{background:linear-gradient(135deg,#fff8f2,#ffeedd);border-radius:16px;
+  padding:20px 24px;margin-bottom:20px;border:2px solid rgba(255,140,66,.3);}
+.audio-label{font-family:'Fredoka One',cursive;color:#f6502c;font-size:1.1rem;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+audio{width:100%;border-radius:10px;outline:none;}
+audio::-webkit-media-controls-panel{background:linear-gradient(135deg,#FF8C42,#f6502c);}
+
+/* Download button */
+.download-btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#3A86FF,#1565c0);
+  color:#fff;text-decoration:none;padding:14px 28px;border-radius:50px;font-weight:900;font-size:1rem;
+  box-shadow:0 6px 20px rgba(58,134,255,.35);transition:transform .2s,box-shadow .2s;margin-top:8px;}
+.download-btn:hover{transform:scale(1.05) translateY(-2px);box-shadow:0 10px 28px rgba(58,134,255,.45);}
+.download-btn .icon{font-size:1.4rem;}
+
+/* Method cards */
+.method-grid{display:grid;gap:16px;margin-top:16px;}
+.method-item{border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(255,140,66,.15);}
+.method-header{padding:14px 20px;display:flex;align-items:center;gap:12px;}
+.method-num{font-family:'Fredoka One',cursive;font-size:2rem;color:rgba(255,255,255,.8);}
+.method-title{font-family:'Fredoka One',cursive;color:#fff;font-size:1.2rem;}
+.method-body{background:#fff;padding:16px 20px;}
+.method-body p{font-size:.93rem;color:#555;line-height:1.7;margin-bottom:8px;}
+.method-body p:last-child{margin-bottom:0;}
+
+.m1{background:linear-gradient(135deg,#FF8C42,#f6502c);}
+.m2{background:linear-gradient(135deg,#e06b28,#c94d1e);}
+.m3{background:linear-gradient(135deg,#ff6e1f,#d95b10);}
+
+/* Steps list */
+.steps-list{list-style:none;display:grid;gap:8px;margin:10px 0;}
+.steps-list li{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;color:#555;line-height:1.65;
+  background:linear-gradient(135deg,#fff4eb,#ffe4cc);border-radius:10px;padding:10px 14px;}
+.steps-list li .si{font-size:1.1rem;flex-shrink:0;}
+
+/* Game cards */
+.game-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:16px;}
+.game-card{border-radius:16px;overflow:hidden;box-shadow:0 5px 18px rgba(255,140,66,.2);}
+.game-card-head{padding:16px 20px;background:linear-gradient(135deg,#FF8C42,#f6502c);}
+.game-card-head h3{font-family:'Fredoka One',cursive;color:#fff;font-size:1.15rem;}
+.game-card-body{background:#fff;padding:16px 20px;}
+.game-card-body p{font-size:.9rem;color:#555;line-height:1.65;}
+
+/* Check list */
+.check-list{list-style:none;display:grid;gap:6px;margin-top:10px;}
+.check-list li{font-size:.88rem;color:#444;padding:6px 0;display:flex;gap:8px;align-items:flex-start;}
+.check-list .ok{color:#22c55e;font-size:1.1rem;flex-shrink:0;}
+.check-list .tip{color:#3A86FF;font-size:1.1rem;flex-shrink:0;}
+
+/* Example box */
+.example-box{background:linear-gradient(135deg,#fff4eb,#ffe4cc);border-left:4px solid #FF8C42;
+  border-radius:0 12px 12px 0;padding:14px 18px;margin:12px 0;font-family:'Caveat',cursive;font-size:1.1rem;color:#5c3d00;line-height:1.7;}
+.example-box .ex-label{font-family:'Nunito',sans-serif;font-size:.78rem;font-weight:900;color:#FF8C42;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;}
+
+/* Schema box */
+.schema-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0;}
+.schema-box{background:#fff8f2;border:2px dashed #FF8C42;border-radius:12px;padding:12px 16px;}
+.schema-box .s-label{font-size:.78rem;font-weight:900;color:#FF8C42;margin-bottom:6px;text-transform:uppercase;}
+.schema-box pre{font-family:'Caveat',cursive;font-size:1rem;color:#5c3d00;white-space:pre-wrap;line-height:1.7;}
+
+/* Epic story map */
+.story-maps{display:grid;gap:14px;margin-top:16px;}
+.story-map{background:linear-gradient(135deg,#FF8C42,#f6502c);border-radius:16px;padding:18px 22px;color:#fff;}
+.story-map h4{font-family:'Fredoka One',cursive;font-size:1.1rem;margin-bottom:10px;}
+.story-map-flow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;}
+.story-map-flow .stage{background:rgba(255,255,255,.2);border-radius:8px;padding:6px 12px;font-size:.85rem;font-weight:700;}
+.story-map-flow .arrow{opacity:.7;font-size:1rem;}
+.story-map-icons{margin-top:8px;font-size:.85rem;opacity:.9;line-height:1.7;}
+
+/* Quote */
+.quote-block{background:linear-gradient(135deg,#FF8C42,#f6502c);border-radius:16px;
+  padding:24px 28px;color:#fff;margin-top:16px;position:relative;}
+.quote-block::before{content:'"';font-family:'Fredoka One',cursive;font-size:6rem;
+  position:absolute;top:-10px;left:16px;opacity:.2;line-height:1;}
+.quote-block p{font-family:'Caveat',cursive;font-size:1.3rem;font-weight:600;line-height:1.6;position:relative;z-index:1;}
+.quote-block cite{display:block;font-size:.82rem;opacity:.85;margin-top:8px;font-style:normal;}
+
+.grass-strip{position:fixed;bottom:0;left:0;right:0;z-index:2;font-size:2.5rem;text-align:center;pointer-events:none;user-select:none;letter-spacing:-4px;line-height:.8;}
+
+@media(max-width:480px){.schema-pair{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="sky-bg"></div>
+<div class="cloud" style="top:8%;animation-duration:22s;animation-delay:0s;">☁️</div>
+<div class="cloud" style="top:18%;animation-duration:28s;animation-delay:-9s;font-size:2rem;">☁️</div>
+<div class="sparkle" style="top:14%;left:6%;animation-delay:.3s;">⚔️</div>
+<div class="sparkle" style="top:20%;left:93%;animation-delay:.7s;">🛡️</div>
+<div class="sparkle" style="top:68%;left:4%;animation-delay:1.1s;">🗡️</div>
+<div class="sparkle" style="top:72%;left:96%;animation-delay:.5s;">🏹</div>
+
+<nav class="top-nav">
+  <a href="index.html" class="nav-home">📚</a>
+  <div class="nav-links">
+    <a href="esse.html"         class="nav-link n1">✍️<span>Эссе</span></a>
+    <a href="batyrlar.html"     class="nav-link n2 active">⚔️<span>Батырлар</span></a>
+    <a href="fantasy.html"      class="nav-link n3">🚀<span> Story book</span></a>
+    <a href="favourite.html"    class="nav-link n4">💛<span>Кітаптар</span></a>
+    <a href="makal.html"        class="nav-link n5">🧩<span>Мақал-мәтел</span></a>
+    <a href="mazmunadama.html"  class="nav-link n6">📝<span>PIRLS </span></a>
+    <a href="sozdik.html"       class="nav-link n7">🔤<span>Сөздік</span></a>
+    <a href="akynjaz.html"      class="nav-link n8">🖊️<span>Ақын жазушылар</span></a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-title">⚔️ Батырлар жырын оқушыларға қалай жаттатуға болады?</div>
+  <div class="hero-sub">Мұғалімдерге арналған тиімді әдіс-тәсілдер жинағы 📖🎵</div>
+</header>
+
+<main class="content">
+
+  <!-- AUDIO PLAYER -->
+  <div class="card" style="animation-delay:.05s;">
+    <div class="card-head"><span class="icon">🎧</span><h2>Аудио нұсқаулық</h2></div>
+    <div class="card-body">
+      <div class="audio-wrap">
+        <div class="audio-label">🎙️ Батырлар жырын жаттау жолы</div>
+        <audio controls>
+          <source src="audio/Батырлар жырын жаттау жолы.mp3" type="audio/mpeg">
+          Браузер аудио файлды қолдамайды.
+        </audio>
+      </div>
+      <p style="font-size:.9rem;color:#888;margin-top:4px;">🔊 Жырды жаттатудың кезеңдері мен нұсқауларын аудио арқылы тыңдаңыз</p>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="card" style="animation-delay:.1s;">
+    <div class="card-head"><span class="icon">📜</span><h2>Жырды жаттатудың мәні</h2></div>
+    <div class="card-body">
+      <div class="def-box">
+        <strong>Батырлар жырын жаттату</strong> — тек мәтінді есте сақтау емес, оқушының тіл байлығын, есте сақтау қабілетін, ұлттық құндылыққа қызығушылығын дамыту. Төмендегі әдістер бастауыш оқушыларына тиімді.
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 METHODS -->
+  <div class="card" style="animation-delay:.15s;">
+    <div class="card-head"><span class="icon">📋</span><h2>Негізгі үш кезең</h2></div>
+    <div class="card-body">
+      <div class="method-grid">
+
+        <div class="method-item">
+          <div class="method-header m1">
+            <div class="method-num">1</div>
+            <div class="method-title">Жырмен алдын ала таныстыру</div>
+          </div>
+          <div class="method-body">
+            <p>Алдымен мұғалім жырды <strong>мәнерлеп оқып береді.</strong></p>
+            <p>Оқушылардың назарын аудару үшін мына сұрақтарды қойыңыз:</p>
+            <ul class="steps-list">
+              <li><span class="si">🦸</span>Кейіпкерлер кім?</li>
+              <li><span class="si">⚔️</span>Батыр қандай?</li>
+              <li><span class="si">🌍</span>Не үшін күреседі?</li>
+              <li><span class="si">🎵</span>Жырдың көңіл күйі қандай?</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="method-item">
+          <div class="method-header m2">
+            <div class="method-num">2</div>
+            <div class="method-title">Жырды бөліктерге бөлу</div>
+          </div>
+          <div class="method-body">
+            <p>Ұзын мәтінді бірден жаттатуға болмайды. Жырды мағыналы бөліктерге бөліп беріңіз:</p>
+            <ul class="steps-list">
+              <li><span class="si">👶</span>Батырдың таныстырылуы</li>
+              <li><span class="si">🐎</span>Атқа мінуі</li>
+              <li><span class="si">🌄</span>Жолға шығуы</li>
+              <li><span class="si">⚔️</span>Жаумен шайқасы</li>
+              <li><span class="si">👑</span>Жеңісі</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="method-item">
+          <div class="method-header m3">
+            <div class="method-num">3</div>
+            <div class="method-title">Күнделікті аз мөлшерде жаттату</div>
+          </div>
+          <div class="method-body">
+            <p><strong>Ұсыныс:</strong> Күнде 4–6 жолдан жаттатыңыз.</p>
+            <ul class="steps-list">
+              <li><span class="si">📅</span>Күн сайын қайталау</li>
+              <li><span class="si">🔁</span>Бұрынғы шумақты ұмыттырмау</li>
+              <li><span class="si">📈</span>Бірте-бірте мөлшерін арттыру</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- GAMES -->
+  <div class="card" style="animation-delay:.2s;">
+    <div class="card-head"><span class="icon">🎮</span><h2>Сабақта қолдануға болатын ойындар</h2></div>
+    <div class="card-body">
+      <div class="game-grid">
+
+        <!-- Жалғастыр -->
+        <div class="game-card">
+          <div class="game-card-head">
+            <h3>🗣️ «Жалғастыр» ойыны</h3>
+          </div>
+          <div class="game-card-body">
+            <p>Мұғалім бірінші жолын айтады, оқушы жалғастырады. Бірнеше рет қайталап шығады. Соңында оқушылар хормен айтады.</p>
+            <div class="example-box">
+              <div class="ex-label">Мысал</div>
+              <strong>Мұғалім:</strong> Атқа қонды Алпамыс...<br>
+              <strong>Оқушы:</strong> Қолына алды садағын.
+            </div>
+            <ul class="check-list">
+              <li><span class="ok">✅</span>Оқушыны белсенді қатыстыру</li>
+              <li><span class="ok">✅</span>Мәтінді тез есте сақтауға көмектесу</li>
+              <li><span class="ok">✅</span>Дұрыс әрі мәнерлеп айтуға үйрету</li>
+              <li><span class="ok">✅</span>Оқушылардың қызығушылығын арттыру</li>
+            </ul>
+            <p style="margin-top:10px;font-size:.85rem;font-weight:700;color:#FF8C42;">🌟 Мұғалімге кеңес:</p>
+            <ul class="check-list">
+              <li><span class="tip">💡</span>Алдымен қысқа шумақтан бастаңыз</li>
+              <li><span class="tip">💡</span>Әлсіз оқушыларға жеңіл жолдарды беріңіз</li>
+              <li><span class="tip">💡</span>Хормен айтуды міндетті түрде ұйымдастырыңыз</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Тірек-сызба -->
+        <div class="game-card">
+          <div class="game-card-head">
+            <h3>🔤 Тірек-сызба арқылы жаттату</h3>
+          </div>
+          <div class="game-card-body">
+            <p><strong>а) Толық сөзбен:</strong> Мұғалім толық шумақты оқиды. Оқушылармен бірге алғашқы әріптерді жазады. Оқушы әріптерге қарап мәтінді айтады. Кейін әріпсіз айтуға көшеді.</p>
+            <div class="schema-pair">
+              <div class="schema-box">
+                <div class="s-label">Толық шумақ</div>
+                <pre>Байбөрі деген бай болыпты,
+Төрт түлігі сай болыпты.
+Бір перзентке зар болып,
+Ұзақ жылдар мұң болыпты.</pre>
+              </div>
+              <div class="schema-box">
+                <div class="s-label">Бас әріптік схема</div>
+                <pre>Б.д.б.б.
+Т.т.с.б.
+Б.п.з.б.
+Ұ.ж.м.б.</pre>
+              </div>
+            </div>
+            <p style="margin-top:10px;"><strong>ә) Тек бірінші әріп:</strong> Жолдың бас әрпі ғана беріледі. Оқушы сол әріпке қарап толық жолды еске түсіреді.</p>
+            <div class="schema-pair">
+              <div class="schema-box">
+                <div class="s-label">Толық шумақ</div>
+                <pre>Атқа қонды Алпамыс,
+Қолына алды садағын.
+Жауға қарай бет алып,
+Елін қорғап барады.</pre>
+              </div>
+              <div class="schema-box">
+                <div class="s-label">Тірек-схема</div>
+                <pre>А
+Қ
+Ж
+Е</pre>
+              </div>
+            </div>
+            <ul class="check-list" style="margin-top:8px;">
+              <li><span class="ok">✅</span>Есте сақтау қабілетін дамытады</li>
+              <li><span class="ok">✅</span>Ұзын мәтінді жеңіл жаттауға көмектеседі</li>
+              <li><span class="ok">✅</span>Өздігінен ойлануға үйретеді</li>
+              <li><span class="ok">✅</span>Мәнерлеп айту дағдысын қалыптастырады</li>
+            </ul>
+            <ul class="check-list" style="margin-top:8px;">
+              <li><span class="tip">💡</span>Алдымен қысқа шумақтармен жұмыс жасаңыз</li>
+              <li><span class="tip">💡</span>Әріптерді үлкен әрі анық жазыңыз</li>
+              <li><span class="tip">💡</span>Соңында хормен айтқызыңыз</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY MAPS -->
+  <div class="card" style="animation-delay:.25s;">
+    <div class="card-head"><span class="icon">🗺️</span><h2>Жыр желісін картаға түсіру</h2></div>
+    <div class="card-body">
+      <p style="font-size:.95rem;color:#555;margin-bottom:16px;">Оқушыға жырдың желісін суреттер мен белгілер арқылы көрсетіңіз. Бұл жырды тез есте сақтауға көмектеседі.</p>
+      <div class="story-maps">
+
+        <div class="story-map">
+          <h4>🗡️ Алпамыс батыр</h4>
+          <div class="story-map-flow">
+            <span class="stage">👶 Туу</span>
+            <span class="arrow">→</span>
+            <span class="stage">🌱 Өсу</span>
+            <span class="arrow">→</span>
+            <span class="stage">🐎 Байшұбар</span>
+            <span class="arrow">→</span>
+            <span class="stage">⚔️ Күрес</span>
+            <span class="arrow">→</span>
+            <span class="stage">👑 Жеңіс</span>
+          </div>
+          <div class="story-map-icons">
+            👶 ана, тілек, батыр туу &nbsp;|&nbsp;
+            🌱 өсу, күш, ер болу &nbsp;|&nbsp;
+            🐎 Байшұбар, жол, сапар &nbsp;|&nbsp;
+            ⚔️ жау, тұтқын, күрес &nbsp;|&nbsp;
+            👑 жеңіс, еліне оралу
+          </div>
+        </div>
+
+        <div class="story-map" style="background:linear-gradient(135deg,#e06b28,#c94d1e);">
+          <h4>🏹 Қобыланды батыр</h4>
+          <div class="story-map-flow">
+            <span class="stage">👴 Қыдырбай</span>
+            <span class="arrow">→</span>
+            <span class="stage">👶 Туу</span>
+            <span class="arrow">→</span>
+            <span class="stage">🐎 Тайбурыл</span>
+            <span class="arrow">→</span>
+            <span class="stage">💍 Құртқа</span>
+            <span class="arrow">→</span>
+            <span class="stage">⚔️ Шайқас</span>
+          </div>
+          <div class="story-map-icons">
+            👴 ата-ана, тілек, бата &nbsp;|&nbsp;
+            👶 ер жету, батырлық &nbsp;|&nbsp;
+            🐎 тұлпар, сапар, ерлік &nbsp;|&nbsp;
+            💍 сүйіспеншілік &nbsp;|&nbsp;
+            ⚔️ елін қорғау, жеңіс
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- DOWNLOAD -->
+  <div class="card" style="animation-delay:.3s;">
+    <div class="card-head"><span class="icon">📁</span><h2>Жырлар жинағын жүктеу</h2></div>
+    <div class="card-body">
+      <div class="def-box">
+        Бұл файлда <strong>Қобыланды батыр, Ер Тарғын, Камбар батыр, Арқалық батыр, Алпамыс батыр</strong> жырлары жазылған. Оқушыларға сабақта пайдалануға болады.
+      </div>
+      <a href="doc/жырлар.docx" download class="download-btn">
+        <span class="icon">📥</span>
+        Жырлар.docx — жүктеу
+      </a>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="card" style="animation-delay:.35s;">
+    <div class="card-head"><span class="icon">🎵</span><h2>Жыр үзіндісі</h2></div>
+    <div class="card-body">
+      <div class="quote-block">
+        <p>Алпамыс деген ер едім,<br>Атамның жалғыз перзенті.<br>Алты жасымда сапарға,<br>Аттандым туған жерімді...</p>
+        <cite>— «Алпамыс батыр» жырынан үзінді</cite>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="grass-strip">🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿</div>
+</body>
+</html>
