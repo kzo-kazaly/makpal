@@ -218,6 +218,46 @@
   }
   .menu-item:hover::after { opacity: 1; }
 
+  /* ---- Special Case Tasks Button ---- */
+  .special-btn-wrapper {
+    position: relative; z-index: 10;
+    display: flex; justify-content: center;
+    padding: 20px 20px 60px;
+  }
+  .special-btn {
+    display: inline-flex; align-items: center; gap: 14px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #fff;
+    text-decoration: none;
+    padding: 18px 32px;
+    border-radius: 60px;
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(.85rem, 2.5vw, 1.15rem);
+    letter-spacing: .5px;
+    box-shadow:
+      0 0 0 3px rgba(255,209,102,.6),
+      0 0 0 6px rgba(255,209,102,.2),
+      0 12px 40px rgba(15,52,96,.5);
+    transition: transform .25s cubic-bezier(.36,.07,.19,.97), box-shadow .25s;
+    animation: fadeUp .9s .8s both;
+    max-width: 680px;
+    text-align: center;
+  }
+  .special-btn:hover {
+    transform: scale(1.05) translateY(-3px);
+    box-shadow:
+      0 0 0 3px #FFD93D,
+      0 0 0 8px rgba(255,217,61,.35),
+      0 20px 50px rgba(15,52,96,.55);
+  }
+  .special-btn-icon { font-size: 2rem; flex-shrink: 0; }
+  .special-btn-text { flex: 1; line-height: 1.35; }
+  .special-btn-arrow {
+    font-size: 1.6rem; flex-shrink: 0;
+    transition: transform .25s;
+  }
+  .special-btn:hover .special-btn-arrow { transform: translateX(6px); }
+
   /* Responsive */
   @media (max-width: 600px) {
     .orbit-wrapper { min-height: 500px; }
@@ -295,6 +335,15 @@
   <a href="akynjaz.html" class="menu-item m8" data-tip="Ақын-жазушылар">
     <span class="m-emoji">🖊️</span>
     <span class="m-label">Ақын<br>жазушылар</span>
+  </a>
+</div>
+
+<!-- Special Case Tasks Button -->
+<div class="special-btn-wrapper">
+  <a href="tapsyrmalar.html" class="special-btn">
+    <span class="special-btn-icon">🧠</span>
+    <span class="special-btn-text">Математикалық – логикалық және тілдік-әдістемелік кейс тапсырмалар</span>
+    <span class="special-btn-arrow">→</span>
   </a>
 </div>
 
