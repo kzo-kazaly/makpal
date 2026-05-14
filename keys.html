@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кейс тапсырмалары</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+  :root{--pink:#FF6B9D;--purple:#A855F7;--orange:#FF8C42;--teal:#00C9A7;--red:#FF4757;--blue:#3A86FF;--yellow:#FFD93D;--green:#7BC67E;--bg:#FFF9F0;--shadow:0 8px 32px rgba(0,0,0,0.13);}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;overflow-x:hidden;}
+  .sky-bg{position:fixed;inset:0;z-index:0;background:linear-gradient(160deg,#b3e5fc 0%,#e1f5e1 60%,#fff9e6 100%);}
+  .cloud{position:fixed;z-index:1;opacity:.7;animation:floatCloud linear infinite;font-size:3rem;user-select:none;pointer-events:none;}
+  @keyframes floatCloud{0%{transform:translateX(-150px);}100%{transform:translateX(110vw);}}
+  .sparkle{position:fixed;z-index:1;font-size:1.4rem;animation:twinkle 2s ease-in-out infinite alternate;pointer-events:none;user-select:none;}
+  @keyframes twinkle{from{opacity:.2;transform:scale(.8) rotate(-10deg);}to{opacity:.9;transform:scale(1.2) rotate(10deg);}}
+  header{position:relative;z-index:10;text-align:center;padding:28px 20px 10px;}
+  .header-title{font-family:'Fredoka One',cursive;font-size:clamp(1.4rem,4vw,2.8rem);color:#fff;text-shadow:3px 4px 0 #FF6B9D,6px 8px 0 rgba(0,0,0,.12);letter-spacing:1px;animation:bounceIn .9s cubic-bezier(.36,.07,.19,.97) both;line-height:1.2;}
+  .header-sub{font-size:1rem;color:#5c6fa8;font-weight:700;margin-top:6px;letter-spacing:1px;animation:fadeUp .9s .3s both;}
+  @keyframes bounceIn{0%{transform:scale(0) rotate(-6deg);opacity:0;}70%{transform:scale(1.08) rotate(2deg);opacity:1;}100%{transform:scale(1) rotate(0);}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  .tabs-wrapper{position:relative;z-index:10;display:flex;justify-content:center;gap:12px;padding:16px 20px;flex-wrap:wrap;}
+  .tab-btn{font-family:'Fredoka One',cursive;font-size:1.05rem;padding:11px 24px;border:none;border-radius:50px;cursor:pointer;transition:all .25s;box-shadow:0 4px 16px rgba(0,0,0,.15);color:#fff;letter-spacing:.5px;}
+  .tab-btn.math{background:linear-gradient(135deg,#3A86FF,#1565c0);}
+  .tab-btn.logic{background:linear-gradient(135deg,#A855F7,#7c3aed);}
+  .tab-btn.lang{background:linear-gradient(135deg,#FF8C42,#f6502c);}
+  .tab-btn.active{transform:scale(1.08);box-shadow:0 8px 28px rgba(0,0,0,.22);}
+  .tab-btn:not(.active){opacity:.65;}
+  .tab-btn:hover{transform:scale(1.1);opacity:1;}
+  .content{position:relative;z-index:10;max-width:860px;margin:0 auto;padding:10px 20px 80px;}
+  .section-panel{display:none;}
+  .section-panel.active{display:block;}
+  .intro-card{background:rgba(255,255,255,.92);border-radius:20px;padding:18px 22px;margin-bottom:20px;box-shadow:var(--shadow);border-left:6px solid;}
+  .intro-card h3{font-family:'Fredoka One',cursive;font-size:1.1rem;color:#5c35b5;margin-bottom:8px;}
+  .intro-card p{font-size:.92rem;color:#4a5568;line-height:1.6;}
+  .goals-list{list-style:none;padding:0;margin-top:8px;}
+  .goals-list li{font-size:.88rem;color:#4a5568;font-weight:700;padding:3px 0;}
+  .q-card{background:rgba(255,255,255,.93);border-radius:22px;padding:20px 24px;margin-bottom:16px;box-shadow:var(--shadow);animation:slideUp .4s ease both;border-left:6px solid;transition:box-shadow .2s;}
+  .q-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.18);}
+  @keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  .q-card.c0{border-color:#FF6B9D;}.q-card.c1{border-color:#FF8C42;}.q-card.c2{border-color:#A855F7;}.q-card.c3{border-color:#3A86FF;}.q-card.c4{border-color:#00C9A7;}.q-card.c5{border-color:#FFD93D;}.q-card.c6{border-color:#FF4757;}.q-card.c7{border-color:#7BC67E;}
+  .case-situation{font-size:.92rem;color:#374151;line-height:1.6;background:#f8f9ff;border-radius:12px;padding:10px 14px;margin-bottom:14px;border-left:3px solid #c4b5fd;}
+  .case-title-row{font-family:'Fredoka One',cursive;font-size:1rem;color:#5c35b5;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+  .case-badge{font-size:.7rem;background:#f3e8ff;color:#7c3aed;padding:2px 10px;border-radius:20px;font-weight:900;font-family:'Nunito',sans-serif;}
+  .q-label{font-size:.8rem;font-weight:900;color:#aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;}
+  .q-label.done::after{content:' ✓';color:#00C9A7;}
+  .q-text{font-size:1rem;font-weight:700;color:#2d3748;margin-bottom:14px;line-height:1.45;}
+  .options{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  @media(max-width:520px){.options{grid-template-columns:1fr;}}
+  .opt-btn{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:14px;border:2.5px solid #e2e8f0;background:#fff;cursor:pointer;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;color:#4a5568;text-align:left;transition:all .18s;}
+  .opt-btn:hover:not(.locked){border-color:#A855F7;background:#faf5ff;transform:scale(1.03);}
+  .opt-letter{min-width:28px;height:28px;border-radius:50%;background:#f0f4f8;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.78rem;transition:all .18s;flex-shrink:0;}
+  .opt-btn:hover:not(.locked) .opt-letter{background:#A855F7;color:#fff;}
+  .opt-btn.selected{border-color:#3A86FF;background:linear-gradient(135deg,#ebf4ff,#f0f8ff);}
+  .opt-btn.selected .opt-letter{background:#3A86FF;color:#fff;}
+  .opt-btn.correct{border-color:#00C9A7;background:linear-gradient(135deg,#e0fdf4,#f0fff8);}
+  .opt-btn.correct .opt-letter{background:#00C9A7;color:#fff;}
+  .opt-btn.wrong{border-color:#FF4757;background:linear-gradient(135deg,#fff1f2,#fff5f5);}
+  .opt-btn.wrong .opt-letter{background:#FF4757;color:#fff;}
+  .opt-btn.locked{cursor:default;}
+  .q-card:nth-child(1){animation-delay:.04s}.q-card:nth-child(2){animation-delay:.07s}.q-card:nth-child(3){animation-delay:.10s}.q-card:nth-child(4){animation-delay:.13s}.q-card:nth-child(5){animation-delay:.16s}.q-card:nth-child(6){animation-delay:.19s}.q-card:nth-child(7){animation-delay:.22s}.q-card:nth-child(8){animation-delay:.25s}.q-card:nth-child(9){animation-delay:.28s}.q-card:nth-child(10){animation-delay:.31s}
+  .reveal-bar{text-align:center;padding:14px 0 28px;}
+  .reveal-btn{font-family:'Fredoka One',cursive;font-size:1.15rem;letter-spacing:.5px;padding:14px 40px;border:none;border-radius:50px;color:#fff;cursor:pointer;transition:all .22s;}
+  .reveal-btn.math-r{background:linear-gradient(135deg,#3A86FF,#1565c0);box-shadow:0 4px 20px rgba(58,134,255,.4);}
+  .reveal-btn.logic-r{background:linear-gradient(135deg,#A855F7,#7c3aed);box-shadow:0 4px 20px rgba(168,85,247,.4);}
+  .reveal-btn.lang-r{background:linear-gradient(135deg,#FF8C42,#f6502c);box-shadow:0 4px 20px rgba(255,140,66,.4);}
+  .reveal-btn:hover{transform:scale(1.08);}
+  .reveal-btn:disabled{background:#ccc;box-shadow:none;cursor:not-allowed;transform:none;}
+  .prog-wrap{position:relative;z-index:10;max-width:860px;margin:0 auto;padding:0 20px 8px;}
+  .prog-info{display:flex;justify-content:space-between;font-weight:700;font-size:.85rem;color:#5c6fa8;margin-bottom:5px;}
+  .prog-bg{height:12px;background:rgba(255,255,255,.7);border-radius:20px;overflow:hidden;box-shadow:inset 0 2px 6px rgba(0,0,0,.1);}
+  .prog-fill{height:100%;background:linear-gradient(90deg,#FF6B9D,#A855F7,#3A86FF);border-radius:20px;transition:width .4s cubic-bezier(.4,0,.2,1);width:0%;}
+  .modal-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5);backdrop-filter:blur(5px);align-items:center;justify-content:center;}
+  .modal-overlay.show{display:flex;}
+  .modal-box{background:#fff;border-radius:32px;padding:32px 28px;max-width:460px;width:92%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:popModal .4s cubic-bezier(.36,.07,.19,.97) both;max-height:90vh;overflow-y:auto;}
+  @keyframes popModal{from{transform:scale(.5) rotate(-8deg);opacity:0;}to{transform:scale(1) rotate(0);opacity:1;}}
+  .modal-emoji{font-size:3.5rem;margin-bottom:8px;}
+  .modal-title{font-family:'Fredoka One',cursive;font-size:1.5rem;color:#2d3748;margin-bottom:4px;}
+  .modal-score{font-size:3rem;font-weight:900;background:linear-gradient(135deg,#FF6B9D,#A855F7,#3A86FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin:8px 0;}
+  .modal-sub{color:#718096;font-weight:700;font-size:.9rem;margin-bottom:6px;}
+  .modal-prog-bg{height:12px;background:#f0f0f0;border-radius:20px;overflow:hidden;margin:10px 0 14px;}
+  .modal-prog-fill{height:100%;border-radius:20px;transition:width .8s cubic-bezier(.4,0,.2,1);width:0%;}
+  .modal-prog-fill.high{background:linear-gradient(90deg,#00C9A7,#7BC67E);}
+  .modal-prog-fill.mid{background:linear-gradient(90deg,#FFD93D,#FF8C42);}
+  .modal-prog-fill.low{background:linear-gradient(90deg,#FF6B9D,#FF4757);}
+  .q-result-list{text-align:left;margin-bottom:14px;max-height:220px;overflow-y:auto;border-radius:12px;border:1.5px solid #f0f0f0;padding:4px 0;}
+  .q-result-row{display:flex;align-items:flex-start;gap:8px;padding:7px 12px;border-bottom:1px dashed #f5f5f5;font-size:.82rem;font-weight:700;color:#4a5568;}
+  .q-result-row:last-child{border-bottom:none;}
+  .ri{min-width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;margin-top:1px;}
+  .ri.ok{background:#00C9A7;color:#fff;}.ri.no{background:#FF4757;color:#fff;}
+  .modal-feedback{font-size:1rem;font-weight:700;color:#4a5568;margin-bottom:18px;line-height:1.4;}
+  .modal-close{font-family:'Fredoka One',cursive;font-size:1.05rem;padding:12px 36px;border:none;border-radius:50px;background:linear-gradient(135deg,#3A86FF,#A855F7);color:#fff;cursor:pointer;box-shadow:0 4px 16px rgba(58,134,255,.35);transition:transform .2s;}
+  .modal-close:hover{transform:scale(1.08);}
+  .back-btn{display:inline-flex;align-items:center;gap:6px;font-family:'Fredoka One',cursive;font-size:1rem;padding:9px 22px;border-radius:50px;background:rgba(255,255,255,.85);color:#5c6fa8;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.12);transition:all .22s;margin-bottom:14px;border:2px solid rgba(168,85,247,.2);cursor:pointer;}
+  .back-btn:hover{background:#fff;color:#A855F7;border-color:#A855F7;transform:scale(1.07) translateY(-2px);}
+  .grass-strip{position:fixed;bottom:0;left:0;right:0;z-index:2;font-size:2.5rem;text-align:center;pointer-events:none;user-select:none;letter-spacing:-4px;line-height:.8;opacity:.5;}
+  .confetti-particle{position:fixed;width:10px;height:10px;border-radius:2px;pointer-events:none;z-index:300;animation:confettiFall linear forwards;}
+  @keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1;}100%{transform:translateY(100vh) rotate(720deg);opacity:0;}}
+
+  /* ── FEEDBACK ── */
+  .fb-wrap{background:rgba(255,255,255,.92);border-radius:22px;padding:24px 26px;margin-top:24px;box-shadow:var(--shadow);animation:slideUp .4s ease both;}
+  .fb-wrap.math-fb   {border-left:6px solid #3A86FF;}
+  .fb-wrap.logic-fb  {border-left:6px solid #A855F7;}
+  .fb-wrap.lang-fb   {border-left:6px solid #FF8C42;}
+  .fb-title{font-family:'Fredoka One',cursive;font-size:1.3rem;margin-bottom:4px;}
+  .fb-title.math-fb  {color:#3A86FF;}
+  .fb-title.logic-fb {color:#A855F7;}
+  .fb-title.lang-fb  {color:#FF8C42;}
+  .fb-sub{font-size:.82rem;color:#aaa;font-weight:700;margin-bottom:18px;}
+  .fb-req{font-size:.75rem;color:#bbb;margin-bottom:12px;}
+  .fb-req span{font-weight:900;color:#A855F7;}
+  .fb-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+  @media(max-width:500px){.fb-row{grid-template-columns:1fr;}}
+  .fb-lbl{font-size:.7rem;font-weight:900;color:#aaa;text-transform:uppercase;letter-spacing:.6px;display:block;margin-bottom:5px;}
+  .fb-inp{width:100%;padding:9px 13px;border:1.5px solid #e2e8f0;border-radius:10px;font-family:'Nunito',sans-serif;font-size:.88rem;color:#2d3748;background:#f8fafc;outline:none;transition:border-color .2s;}
+  .fb-inp:focus{border-color:#A855F7;}
+  .fb-inp.math-inp:focus  {border-color:#3A86FF;}
+  .fb-inp.logic-inp:focus {border-color:#A855F7;}
+  .fb-inp.lang-inp:focus  {border-color:#FF8C42;}
+  textarea.fb-inp{resize:vertical;min-height:80px;line-height:1.6;}
+  .fb-cc{font-size:.7rem;color:#ccc;text-align:right;margin-bottom:10px;}
+  .opt-b{font-size:.65rem;border-radius:20px;padding:1px 7px;margin-left:4px;font-weight:900;background:#f0f4f8;color:#aaa;border:1px solid #e2e8f0;}
+  .fb-abox{background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:12px;padding:13px;display:flex;flex-direction:column;gap:9px;margin-bottom:12px;transition:border-color .2s;}
+  .fb-abox.math-abox.rec  {border-color:#3A86FF;box-shadow:0 0 0 3px rgba(58,134,255,.1);}
+  .fb-abox.logic-abox.rec {border-color:#A855F7;box-shadow:0 0 0 3px rgba(168,85,247,.1);}
+  .fb-abox.lang-abox.rec  {border-color:#FF8C42;box-shadow:0 0 0 3px rgba(255,140,66,.1);}
+  .ab-row{display:flex;gap:7px;align-items:center;flex-wrap:wrap;}
+  .ab{display:flex;align-items:center;gap:4px;padding:7px 14px;border:none;border-radius:9px;font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:900;cursor:pointer;transition:opacity .2s,transform .15s;}
+  .ab:hover{opacity:.85;transform:translateY(-1px);}
+  .ab:disabled{opacity:.35;cursor:not-allowed;transform:none;}
+  .ab-r.math  {background:linear-gradient(135deg,#3A86FF,#1565c0);color:#fff;}
+  .ab-r.logic {background:linear-gradient(135deg,#A855F7,#7c3aed);color:#fff;}
+  .ab-r.lang  {background:linear-gradient(135deg,#FF8C42,#f6502c);color:#fff;}
+  .ab-s{background:linear-gradient(135deg,#f85149,#c62828);color:#fff;}
+  .ab-c{background:#f0f4f8;color:#888;border:1px solid #e2e8f0;}
+  .ab-ind{display:none;align-items:center;gap:5px;font-size:.78rem;font-weight:900;}
+  .ab-ind.on{display:flex;}
+  .ab-dot{width:8px;height:8px;border-radius:50%;animation:recP 1s ease-in-out infinite;}
+  .ab-dot.math  {background:#3A86FF;}
+  .ab-dot.logic {background:#A855F7;}
+  .ab-dot.lang  {background:#FF8C42;}
+  .ab-ind.math  {color:#3A86FF;}
+  .ab-ind.logic {color:#A855F7;}
+  .ab-ind.lang  {color:#FF8C42;}
+  @keyframes recP{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.3;transform:scale(.6);}}
+  .ab-t{font-family:'Fredoka One',cursive;font-size:.85rem;}
+  .fb-aprev{width:100%;height:32px;display:none;margin-top:2px;}
+  .fb-aprev.vis{display:block;}
+  .fb-aprev.math  {accent-color:#3A86FF;}
+  .fb-aprev.logic {accent-color:#A855F7;}
+  .fb-aprev.lang  {accent-color:#FF8C42;}
+  .fb-ast{font-size:.72rem;color:#bbb;font-weight:700;}
+  .fb-ast.ok{color:#00C9A7;}
+  .fb-sbtn{width:100%;padding:12px;border:none;border-radius:13px;font-family:'Fredoka One',cursive;font-size:1.05rem;color:#fff;cursor:pointer;transition:opacity .2s,transform .15s;margin-top:4px;}
+  .fb-sbtn:hover{opacity:.88;transform:translateY(-2px);}
+  .fb-sbtn:disabled{opacity:.45;cursor:not-allowed;transform:none;}
+  .fb-sbtn.math  {background:linear-gradient(135deg,#3A86FF,#1565c0);box-shadow:0 4px 16px rgba(58,134,255,.35);}
+  .fb-sbtn.logic {background:linear-gradient(135deg,#A855F7,#7c3aed);box-shadow:0 4px 16px rgba(168,85,247,.35);}
+  .fb-sbtn.lang  {background:linear-gradient(135deg,#FF8C42,#f6502c);box-shadow:0 4px 16px rgba(255,140,66,.35);}
+  .fb-ok{display:none;text-align:center;padding:20px 0;}
+  .fb-ok .ok-ico{font-size:3rem;animation:bounceIn .6s both;}
+  .fb-ok h3{font-family:'Fredoka One',cursive;font-size:1.4rem;margin:8px 0 4px;}
+  .fb-ok h3.math  {color:#3A86FF;}
+  .fb-ok h3.logic {color:#A855F7;}
+  .fb-ok h3.lang  {color:#FF8C42;}
+  .fb-ok p{color:#aaa;font-size:.85rem;margin-bottom:14px;}
+  .fb-rbtn{border:none;border-radius:11px;padding:8px 24px;font-family:'Fredoka One',cursive;font-size:.92rem;cursor:pointer;color:#fff;}
+  .fb-rbtn.math  {background:linear-gradient(135deg,#3A86FF,#1565c0);}
+  .fb-rbtn.logic {background:linear-gradient(135deg,#A855F7,#7c3aed);}
+  .fb-rbtn.lang  {background:linear-gradient(135deg,#FF8C42,#f6502c);}
+  .fb-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(80px);background:#fff;border:2px solid #eee;border-radius:14px;padding:10px 20px;font-weight:900;font-size:.85rem;color:#555;z-index:9999;transition:transform .35s;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.12);}
+  .fb-toast.show{transform:translateX(-50%) translateY(0);}
+  .fb-toast.ok {border-color:#00C9A7;color:#009688;}
+  .fb-toast.err{border-color:#FF4757;color:#FF4757;}
+</style>
+</head>
+<body>
+
+<div class="sky-bg"></div>
+<div class="cloud" style="top:6%;animation-duration:18s;animation-delay:0s;">☁️</div>
+<div class="cloud" style="top:16%;animation-duration:25s;animation-delay:-9s;font-size:2rem;">☁️</div>
+<div class="cloud" style="top:4%;animation-duration:32s;animation-delay:-16s;font-size:4rem;">☁️</div>
+<div class="sparkle" style="top:10%;left:7%;animation-delay:.3s;">⭐</div>
+<div class="sparkle" style="top:22%;left:92%;animation-delay:.7s;">🌟</div>
+<div class="sparkle" style="top:65%;left:4%;animation-delay:1.1s;">✨</div>
+<div class="sparkle" style="top:72%;left:94%;animation-delay:.5s;">⭐</div>
+<div class="sparkle" style="top:38%;left:2%;animation-delay:1.5s;">🌟</div>
+<div class="sparkle" style="top:48%;left:96%;animation-delay:.9s;">✨</div>
+
+<header>
+  <a href="index.html" class="back-btn">⬅️ Басты бет</a>
+  <div class="header-title">📚 Кейс тапсырмалары</div>
+  <div class="header-sub">Жауапты таңда, соңында нәтижеңді біл! 🧠✨</div>
+</header>
+
+<div class="tabs-wrapper">
+  <button class="tab-btn math active" onclick="switchTab('math')">🔢 Математикалық</button>
+  <button class="tab-btn logic" onclick="switchTab('logic')">🧩 Логикалық</button>
+  <button class="tab-btn lang" onclick="switchTab('lang')">📖 Тілдік-математикалық</button>
+</div>
+
+<div class="prog-wrap">
+  <div class="prog-info">
+    <span id="progLabel">0 / 0 сұрақ жауапталды</span>
+    <span id="progPct">0%</span>
+  </div>
+  <div class="prog-bg"><div class="prog-fill" id="progFill"></div></div>
+</div>
+
+<div class="content">
+  <div class="section-panel active" id="panel-math"></div>
+  <div class="section-panel" id="panel-logic"></div>
+  <div class="section-panel" id="panel-lang"></div>
+</div>
+
+<div class="modal-overlay" id="scoreModal">
+  <div class="modal-box">
+    <div class="modal-emoji" id="modalEmoji">🏆</div>
+    <div class="modal-title" id="modalTitle">Нәтиже!</div>
+    <div class="modal-score" id="modalScore">0/0</div>
+    <div class="modal-sub" id="modalSub">балл жинадың</div>
+    <div class="modal-prog-bg"><div class="modal-prog-fill" id="modalBar"></div></div>
+    <div class="q-result-list" id="modalResults"></div>
+    <div class="modal-feedback" id="modalFeedback"></div>
+    <button class="modal-close" onclick="closeModal()">✅ Жабу</button>
+  </div>
+</div>
+
+<div class="grass-strip">🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿🌱🌿</div>
+
+<div class="fb-toast" id="fbToast"></div>
+
+<script>
+
+// ── Telegram ──
+const TG_TOKEN   = '8840792768:AAGSclm7RmExZLQ_J7nuyBXAZO8we-84RaQ';
+const TG_CHAT_ID = '5514681704';
+const TG_API     = `https://api.telegram.org/bot${TG_TOKEN}`;
+
+const BOLIMDER = {
+  m: {ad:'🔢 Математикалық',  emoji:'🔢', ok:'mathOk', form:'mathForm', btn:'mSendBtn', txt:'🔢 Жіберу', cls:'math'},
+  lo: {ad:'🧩 Логикалық',      emoji:'🧩', ok:'logOk',  form:'logForm',  btn:'lSendBtn', txt:'🧩 Жіберу', cls:'logic'},
+  la: {ad:'📖 Тілдік-математикалық', emoji:'📖', ok:'lanOk', form:'lanForm', btn:'laSendBtn', txt:'📖 Жіберу', cls:'lang'},
+};
+
+const xState = {};
+['m','lo','la'].forEach(p => { xState[p] = {rec:null,chunks:[],blob:null,timer:null,sec:0}; });
+
+function fbToast(msg,type){
+  const t=document.getElementById('fbToast');
+  t.textContent=(type==='ok'?'✅ ':'❌ ')+msg;
+  t.className='fb-toast '+type+' show';
+  setTimeout(()=>t.className='fb-toast '+type,3500);
+}
+
+const fmt=s=>Math.floor(s/60)+':'+(s%60<10?'0':'')+s%60;
+function xSetSt(p,txt,cls){
+  const e=document.getElementById(p+'Ast');
+  if(e){e.textContent=txt;e.className='fb-ast'+(cls?' '+cls:'');}
+}
+
+async function xStartRec(p){
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    const st=xState[p]; st.chunks=[];
+    st.rec=new MediaRecorder(stream);
+    st.rec.ondataavailable=e=>st.chunks.push(e.data);
+    st.rec.onstop=()=>{
+      st.blob=new Blob(st.chunks,{type:'audio/webm'});
+      const pr=document.getElementById(p+'Prev');
+      pr.src=URL.createObjectURL(st.blob); pr.classList.add('vis');
+      document.getElementById(p+'BtnC').style.display='inline-flex';
+      xSetSt(p,'✅ Жазба дайын','ok');
+      stream.getTracks().forEach(t=>t.stop());
+    };
+    st.rec.start(); st.sec=0;
+    st.timer=setInterval(()=>{st.sec++;document.getElementById(p+'RecT').textContent=fmt(st.sec);if(st.sec>=300)xStopRec(p);},1000);
+    document.getElementById(p+'BtnR').disabled=true;
+    document.getElementById(p+'BtnS').disabled=false;
+    document.getElementById(p+'RecInd').classList.add('on');
+    document.getElementById(p+'ABox').classList.add('rec');
+    xSetSt(p,'Жазылуда...');
+  }catch(e){fbToast('Микрофонға рұқсат берілмеді!','err');}
+}
+function xStopRec(p){
+  const st=xState[p];
+  if(st.rec&&st.rec.state!=='inactive')st.rec.stop();
+  clearInterval(st.timer);
+  document.getElementById(p+'BtnR').disabled=false;
+  document.getElementById(p+'BtnS').disabled=true;
+  document.getElementById(p+'RecInd').classList.remove('on');
+  document.getElementById(p+'ABox').classList.remove('rec');
+}
+function xClearRec(p){
+  xState[p].blob=null;
+  const pr=document.getElementById(p+'Prev'); pr.src=''; pr.classList.remove('vis');
+  document.getElementById(p+'BtnC').style.display='none';
+  xSetSt(p,'Дыбыс жазбасы қосымша');
+}
+
+async function xSend(p){
+  const aty  =document.getElementById(p+'_aty').value.trim();
+  const synip=document.getElementById(p+'_synip').value;
+  const matn =document.getElementById(p+'_matn').value.trim();
+  const blob =xState[p].blob;
+  const info =BOLIMDER[p];
+  if(!aty)  {fbToast('Атыңызды жазыңыз!','err'); return;}
+  if(!synip){fbToast('Сыныпты таңдаңыз!','err'); return;}
+  if(!matn&&!blob){fbToast('Мәтін немесе аудио жіберіңіз!','err'); return;}
+  const btn=document.getElementById(info.btn);
+  btn.disabled=true; btn.textContent='Жіберілуде...';
+  const uaqyt=new Date().toLocaleString('kk-KZ',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
+  const msg=`${info.emoji} <b>Кейс тапсырмалары — ${info.ad}</b>\n\n🌐 <b>Бет:</b> 📚 Кейс тапсырмалары\n📂 <b>Бөлім:</b> ${info.ad}\n👤 <b>Оқушы:</b> ${aty}\n🏫 <b>Сынып:</b> ${synip}\n🕐 <b>Уақыт:</b> ${uaqyt}${matn?'\n\n✍️ <b>Пікір:</b>\n'+matn:''}${blob?'\n\n🎙️ <i>Аудио жеке жіберіледі</i>':''}`;
+  try{
+    await fetch(`${TG_API}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:TG_CHAT_ID,text:msg,parse_mode:'HTML'})});
+    if(blob){
+      xSetSt(p,'⏫ Жіберілуде...','upl');
+      const fd=new FormData();
+      fd.append('chat_id',TG_CHAT_ID);
+      fd.append('audio',blob,`${aty}_${info.ad}.webm`);
+      fd.append('caption',`🎙️ Аудио\n👤 ${aty}\n📂 ${info.ad}`);
+      await fetch(`${TG_API}/sendAudio`,{method:'POST',body:fd});
+      xSetSt(p,'✅ Аудио жіберілді!','ok');
+    }
+    document.getElementById(info.form).style.display='none';
+    document.getElementById(info.ok).style.display='block';
+  }catch(e){
+    fbToast('Қате шықты!','err');
+    btn.disabled=false; btn.textContent=info.txt;
+  }
+}
+
+function xReset(p){
+  const info=BOLIMDER[p];
+  document.getElementById(p+'_aty').value='';
+  document.getElementById(p+'_synip').value='';
+  document.getElementById(p+'_matn').value='';
+  const cc=document.getElementById(p+'_cc'); if(cc) cc.textContent='0';
+  xClearRec(p);
+  document.getElementById(info.form).style.display='block';
+  document.getElementById(info.ok).style.display='none';
+  const btn=document.getElementById(info.btn);
+  btn.disabled=false; btn.textContent=info.txt;
+}
+
+function makeFbBlock(p, cls, title, emoji, okEmoji, okTitle) {
+  return `
+  <div class="fb-wrap ${cls}-fb">
+    <div class="fb-title ${cls}-fb">${title} — кері байланыс</div>
+    <div class="fb-sub">Тест нәтижесін мұғалімге жіберіңіз</div>
+    <div id="${p === 'm' ? 'mathForm' : p === 'lo' ? 'logForm' : 'lanForm'}">
+      <p class="fb-req">Мәтін немесе аудио — <span>кемінде біреуі міндетті</span></p>
+      <div class="fb-row">
+        <div>
+          <label class="fb-lbl">Аты-жөні *</label>
+          <input class="fb-inp ${cls}-inp" type="text" id="${p}_aty" placeholder="Айдос Бекұлы">
+        </div>
+        <div>
+          <label class="fb-lbl">Сынып *</label>
+          <select class="fb-inp ${cls}-inp" id="${p}_synip">
+            <option value="">Таңдаңыз</option>
+            <option>1А</option><option>1Ә</option><option>1Б</option><option>1В</option><option>1Г</option><option>1Д</option><option>1Е</option>
+            <option>2А</option><option>2Ә</option><option>2Б</option><option>2В</option><option>2Г</option><option>2Д</option><option>2Е</option>
+            <option>3А</option><option>3Ә</option><option>3Б</option><option>3В</option><option>3Г</option><option>3Д</option><option>3Е</option>
+            <option>4А</option><option>4Ә</option><option>4Б</option><option>4В</option><option>4Г</option><option>4Д</option><option>4Е</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin-bottom:4px;">
+        <label class="fb-lbl">Пікір <span class="opt-b">қосымша</span></label>
+        <textarea class="fb-inp ${cls}-inp" id="${p}_matn" placeholder="Қиын болған тапсырмалар немесе пікіріңіз..." maxlength="2000"
+          oninput="document.getElementById('${p}_cc').textContent=this.value.length"></textarea>
+      </div>
+      <div class="fb-cc"><span id="${p}_cc">0</span>/2000</div>
+      <label class="fb-lbl">🎙️ Аудио жазба <span class="opt-b">қосымша</span></label>
+      <div class="fb-abox ${cls}-abox" id="${p}ABox">
+        <div class="ab-row">
+          <button class="ab ab-r ${cls}" id="${p}BtnR" onclick="xStartRec('${p}')">🎙️ Жазу</button>
+          <button class="ab ab-s" id="${p}BtnS" onclick="xStopRec('${p}')" disabled>⏹ Тоқтату</button>
+          <button class="ab ab-c" id="${p}BtnC" onclick="xClearRec('${p}')" style="display:none">🗑️</button>
+          <div class="ab-ind ${cls}" id="${p}RecInd"><div class="ab-dot ${cls}"></div><span>Жазылуда</span><span class="ab-t" id="${p}RecT">0:00</span></div>
+        </div>
+        <audio class="fb-aprev ${cls}" id="${p}Prev" controls></audio>
+        <div class="fb-ast" id="${p}Ast">Дыбыс жазбасы қосымша</div>
+      </div>
+      <button class="fb-sbtn ${cls}" id="${p === 'm' ? 'mSendBtn' : p === 'lo' ? 'lSendBtn' : 'laSendBtn'}" onclick="xSend('${p}')">${emoji} Жіберу</button>
+    </div>
+    <div class="fb-ok" id="${p === 'm' ? 'mathOk' : p === 'lo' ? 'logOk' : 'lanOk'}">
+      <div class="ok-ico">${okEmoji}</div>
+      <h3 class="${cls}">Жіберілді!</h3>
+      <p>Мұғалім сіздің жауабыңызды алды</p>
+      <button class="fb-rbtn ${cls}" onclick="xReset('${p}')">🔄 Қайта жіберу</button>
+    </div>
+  </div>`;
+}
+
+// Append feedback blocks after reveal bars inside each panel
+function appendFeedback() {
+  const mathPanel  = document.getElementById('panel-math');
+  const logicPanel = document.getElementById('panel-logic');
+  const langPanel  = document.getElementById('panel-lang');
+  if(mathPanel)  mathPanel.insertAdjacentHTML('beforeend',  makeFbBlock('m',  'math',  '🔢 Математикалық', '🔢', '🏆', 'Математика'));
+  if(logicPanel) logicPanel.insertAdjacentHTML('beforeend', makeFbBlock('lo', 'logic', '🧩 Логикалық',      '🧩', '🎉', 'Логика'));
+  if(langPanel)  langPanel.insertAdjacentHTML('beforeend',  makeFbBlock('la', 'lang',  '📖 Тілдік-математикалық', '📖', '🌟', 'Тіл'));
+}
+
+
+const LETTERS = ['A','B','C','D'];
+const COLORS  = ['c0','c1','c2','c3','c4','c5','c6','c7'];
+
+const SECTIONS = {
+  math: {
+    label:'🔢 Математикалық',
+    revClass:'math-r',
+    introColor:'#3A86FF',
+    intro:{title:'🎯 Бөлімнің мақсаты',text:'Математикалық кейс тапсырмалары оқушылардың математикалық білімін өмірлік жағдайларда қолдана білуін дамытады.',
+      goals:['🧠 Логикалық ойлауды дамыту','🌍 Өмірмен байланыстыру','🔎 Талдау дағдысын қалыптастыру','💡 Шешім қабылдау қабілетін дамыту','🤝 Топтық жұмысқа үйрету']},
+    groups:[
+      {title:'🛒 1-кейс: Дүкендегі сатып алу',badge:'Кейс',
+       sit:'Айгүл дүкенге барды. Ол <b>6 алма</b> және <b>4 банан</b> алды. Кассир оған «тағы 3 алма сатып алсаң, жеңілдік болады» деді.',
+       qs:[
+        {q:'Айгүлде барлығы қанша жеміс болды?',opts:['8 жеміс','9 жеміс','10 жеміс','12 жеміс'],ans:2},
+        {q:'Егер ол 3 алма тағы алса, неше алма болады?',opts:['7 алма','8 алма','9 алма','10 алма'],ans:2},
+       ]},
+      {title:'🏫 2-кейс: Сынып бөлмесі',badge:'Кейс',
+       sit:'Сыныпта <b>12 ұл</b> және <b>14 қыз</b> бар. Мұғалім <b>5 оқушыны</b> кезекшілікке тағайындады.',
+       qs:[
+        {q:'Сыныпта барлығы неше оқушы бар?',opts:['24','25','26','28'],ans:2},
+        {q:'Кезекшіліктен тыс қанша оқушы қалды?',opts:['19','20','21','22'],ans:2},
+       ]},
+      {title:'📚 3-кейс: Кітапхана',badge:'Кейс',
+       sit:'Кітапханада <b>40 кітап</b> болды. Оқушылар <b>15 кітап</b> алып кетті. Кейін тағы <b>8 кітап</b> келді.',
+       qs:[
+        {q:'Қазір кітапханада неше кітап бар?',opts:['30','31','32','33'],ans:3},
+        {q:'Егер тағы 6 кітап берілсе, неше қалады?',opts:['25','26','27','28'],ans:2},
+       ]},
+      {title:'🦅 4-кейс: Құс бағы',badge:'Кейс',
+       sit:'Ағашта <b>25 құс</b> отырды. <b>7 құс</b> ұшып кетті, <b>6 құс</b> келді. Кейін тағы <b>5 құс</b> ұшып кетті.',
+       qs:[
+        {q:'Қазір ағашта неше құс бар?',opts:['17','18','19','20'],ans:2},
+        {q:'Егер 4 құс келсе, неше болады?',opts:['21','22','23','24'],ans:2},
+       ]},
+      {title:'🏆 5-кейс: Ойын жарысы',badge:'Кейс',
+       sit:'Балаларда <b>60 ұпай</b> болды. 1-ойында <b>18 ұпай</b>, 2-ойында <b>15 ұпай</b> алды. Кейін <b>10 ұпай</b> жоғалтты.',
+       qs:[
+        {q:'Қазір қанша ұпай қалды?',opts:['78','80','83','85'],ans:2},
+        {q:'Егер тағы 12 ұпай алса, неше болады?',opts:['90','93','95','97'],ans:2},
+       ]},
+      {title:'🛍️ 6-кейс: Дүкен және ақша',badge:'Кейс',
+       sit:'Анасы <b>3 нан</b> (әрқайсысы 90 тг) алды. 1000 тг-ге 3 дәптер (200 тг) алса, ақша қалады ма?',
+       qs:[
+        {q:'3 нанның жалпы бағасы қанша?',opts:['240 тг','250 тг','270 тг','300 тг'],ans:2},
+        {q:'1000 тг-ге 3 дәптер (200 тг) алса, қанша ақша қалады?',opts:['200 тг','300 тг','400 тг','500 тг'],ans:2},
+        {q:'4 алма (80 тг) және 6 алмұрт (70 тг) барлығы қанша?',opts:['700 тг','720 тг','740 тг','760 тг'],ans:1},
+       ]},
+      {title:'🕐 7-кейс: Уақыт есебі',badge:'Кейс',
+       sit:'Сабақ <b>45 минут</b>, үзіліс <b>10 минут</b>. Сабақ таңертең <b>8:00-де</b> басталады.',
+       qs:[
+        {q:'Сабақ + үзіліс барлығы неше минут?',opts:['50','55','60','65'],ans:1},
+        {q:'1-сабақ нешеде аяқталады?',opts:['8:40','8:45','8:50','9:00'],ans:1},
+        {q:'2-сабақ нешеде басталады?',opts:['8:50','8:55','9:00','9:05'],ans:1},
+        {q:'5 сағатта неше минут болады?',opts:['200','250','300','350'],ans:2},
+       ]},
+    ]
+  },
+
+  logic: {
+    label:'🧩 Логикалық',
+    revClass:'logic-r',
+    introColor:'#A855F7',
+    intro:{title:'🔎 Бөлімнің мақсаты',text:'Логикалық тапсырмалар себеп–салдар байланысын табуға, ақпаратты талдауға және ең тиімді шешімді таңдауға үйретеді.',
+      goals:['🎯 Зейінді күшейту','🗣️ Ойды дәлелдеп айтуға үйрету','🤝 Ынтымақтастық дағдысын дамыту','🚀 Шығармашылық ойлауды дамыту']},
+    groups:[
+      {title:'⚖️ 1-кейс: Қайсысы ауыр?',badge:'Логика',
+       sit:'Үстелде 3 зат: <b>кітап, қалам, дәптер.</b> Кітап дәптерден ауыр, ал дәптер қаламнан ауыр.',
+       qs:[
+        {q:'Ең жеңіл затты тап.',opts:['Кітап','Дәптер','Қалам','Барлығы бірдей'],ans:2},
+        {q:'Ең ауыр затты тап.',opts:['Қалам','Дәптер','Кітап','Белгісіз'],ans:2},
+       ]},
+      {title:'🚌 2-кейс: Автобус есебі',badge:'Логика',
+       sit:'Автобуста <b>12 адам</b> бар еді. Бір аялдамада <b>4 адам түсті</b>, <b>6 адам мінді.</b>',
+       qs:[
+        {q:'Енді автобуста неше адам бар?',opts:['12','13','14','15'],ans:2},
+       ]},
+      {title:'🎨 3-кейс: Түстер логикасы',badge:'Логика',
+       sit:'3 қарындаш: <b>қызыл, көк, жасыл.</b> Айжан қызыл емес, Дана көк емес қарындаш алды. Ернар — қалғанын алды.',
+       qs:[
+        {q:'Айжан қандай түс алды?',opts:['Қызыл','Көк','Жасыл','Белгісіз'],ans:1},
+        {q:'Дана қандай түс алды?',opts:['Қызыл','Көк','Жасыл','Белгісіз'],ans:2},
+        {q:'Ернар қандай түс алды?',opts:['Жасыл','Көк','Қызыл','Белгісіз'],ans:2},
+       ]},
+      {title:'🍎 4-кейс: Дүкендегі жұмбақ',badge:'Логика',
+       sit:'Дүкенде алма мен алмұрт бар. Барлығы <b>20 жеміс.</b> Алма алмұрттан <b>4-ке көп.</b>',
+       qs:[
+        {q:'Алма нешеу?',opts:['10','11','12','13'],ans:2},
+        {q:'Алмұрт нешеу?',opts:['6','7','8','9'],ans:2},
+       ]},
+      {title:'🔢 5-кейс: Жасырын сан',badge:'Логика',
+       sit:'Мен бір сан ойладым. Оған <b>6 қоссақ, 15 шығады.</b>',
+       qs:[
+        {q:'Қандай сан ойладым?',opts:['7','8','9','10'],ans:2},
+       ]},
+      {title:'👨‍👩‍👧 6-кейс: Отбасы',badge:'Логика',
+       sit:'Отбасында <b>5 адам</b> бар. Әке мен ана жұмысқа кетті, <b>3 бала</b> үйде қалды.',
+       qs:[
+        {q:'Отбасында неше бала бар?',opts:['2','3','4','5'],ans:1},
+       ]},
+      {title:'🐔 7-кейс: Жануарлар әлемі',badge:'Логика',
+       sit:'Фермада тауық пен қоян бар. Барлығы <b>10 бас</b> және <b>28 аяқ</b> бар. (тауық — 2 аяқ, қоян — 4 аяқ)',
+       qs:[
+        {q:'Неше тауық бар?',opts:['4','5','6','7'],ans:2},
+        {q:'Неше қоян бар?',opts:['3','4','5','6'],ans:1},
+       ]},
+      {title:'📖 8-кейс: Кітаптар тізбегі',badge:'Логика',
+       sit:'Айдос 3 күнде кітап оқыды: <b>1-күні – 5 бет, 2-күні – 7 бет, 3-күні – 8 бет.</b>',
+       qs:[
+        {q:'Барлығы неше бет оқыды?',opts:['18','19','20','21'],ans:2},
+       ]},
+    ]
+  },
+
+  lang: {
+    label:'📖 Тілдік-математикалық',
+    revClass:'lang-r',
+    introColor:'#FF8C42',
+    intro:{title:'🎯 Бөлімнің мақсаты',text:'Тілдік-математикалық тапсырмалар оқушының ойын дәлелдеп айтуын, тілді математикамен ұштастыра білуін дамытады.',
+      goals:['🎯 Зейін мен назарды күшейту','🗣️ Ойды дәлелдеп айтуға үйрету','🤝 Ынтымақтастық дағдысын дамыту','🚀 Шығармашылық ойлауды дамыту']},
+    groups:[
+      {title:'📖 1-кейс: Мақалдар және сандар',badge:'Тіл+Мат',
+       sit:'Мақалдарда жасырылған сандарды тап.',
+       qs:[
+        {q:'«Жеті рет өлшеп, бір рет кес» — мұнда қанша сан бар?',opts:['1','2','3','4'],ans:1},
+        {q:'«Бес саусақ бірдей емес» мақалындағы сан?',opts:['3','4','5','6'],ans:2},
+        {q:'«Жеті рет өлшеп, бір рет кес» — мағынасы?',opts:['Жылдам жасау керек','Байқамай жасау керек','Ойланып жасау керек','Бірнеше адам жасасын'],ans:2},
+        {q:'«Екі қошқардың басы бір қазанға сыймайды» — мағынасы?',opts:['Қазан кішкентай','Екі басшы келіспейді','Екі адам жұмыс жасасын','Ет пісірілмейді'],ans:1},
+       ]},
+      {title:'✍️ 2-кейс: Санды тіл',badge:'Тіл+Мат',
+       sit:'Сан есімдерді дұрыс пайдалан.',
+       qs:[
+        {q:'48 санын сөзбен жаз.',opts:['қырық жеті','қырық сегіз','елу сегіз','жиырма сегіз'],ans:1},
+        {q:'«Жүз» сөзінің математикадағы мәні?',opts:['50','75','100','1000'],ans:2},
+        {q:'Реттік сан есімге мысал қайсы?',opts:['бес','он','бірінші','жиырма'],ans:2},
+        {q:'Толықтыр: 2, 4, 6, 8, ...',opts:['9','10','11','12'],ans:1},
+       ]},
+      {title:'🍎 3-кейс: Кім қанша алма алды?',badge:'Тіл+Мат',
+       sit:'Үш бала алма жинады. <b>Аян</b> – 5 алма, <b>Дана</b> – одан 2 алма артық, <b>Ернар</b> – Дана мен Аянның ортасындағы саннан 1-ге кем.',
+       qs:[
+        {q:'Данада неше алма бар?',opts:['5','6','7','8'],ans:2},
+        {q:'Аян мен Данадың арасындағы сан?',opts:['5','6','7','8'],ans:1},
+        {q:'Ернарда неше алма бар?',opts:['4','5','6','7'],ans:1},
+        {q:'Үш баладың жиыны қанша?',opts:['15','16','17','18'],ans:2},
+       ]},
+      {title:'🚌 4-кейс: Сөйлем және сан',badge:'Тіл+Мат',
+       sit:'Сөйлемдерден дұрыс жауапты тап.',
+       qs:[
+        {q:'«7, дәптер, алдым» — дұрыс сөйлем қайсы?',opts:['Дәптер 7 алдым.','Мен 7 дәптер алдым.','7 алдым дәптер.','Алдым 7 дәптер.'],ans:1},
+        {q:'«Үш арсыз» дегеніміз не?',opts:['Ұйқы, жұмыс, тамақ','Ұйқы, күлкі, тамақ','Ойын, күлкі, демалыс','Жұмыс, оқу, ойын'],ans:1},
+        {q:'«Тоғыз жолдың торабы» — мұндағы сан?',opts:['7','8','9','10'],ans:2},
+       ]},
+      {title:'🔢 5-кейс: Логикалық тіл',badge:'Тіл+Мат',
+       sit:'Математика мен тілді бірге пайдалан.',
+       qs:[
+        {q:'«Он саусағынан өнер тамған» — мұндағы сан?',opts:['5','8','10','12'],ans:2},
+        {q:'«Бірлік болмай, тірлік болмас» — тәрбиелік мәні?',opts:['Бір болу керек','Күресу керек','Жұмыс жасау керек','Оқу керек'],ans:0},
+        {q:'«Бір ауыз сөз» тіркесіндегі «бір» — қандай сан есім?',opts:['Реттік','Болжалды','Есептік','Жинақтық'],ans:2},
+       ]},
+    ]
+  }
+};
+
+// ─── STATE ───────────────────────────────────
+let currentSection = 'math';
+const userAnswers = {math:{}, logic:{}, lang:{}};
+const revealed    = {math:false, logic:false, lang:false};
+// flat list per section: [{correctAns, qText, opts}]
+const flatQ = {math:[], logic:[], lang:[]};
+
+// ─── BUILD ───────────────────────────────────
+function build(sec) {
+  const S = SECTIONS[sec];
+  const panel = document.getElementById('panel-' + sec);
+  panel.innerHTML = '';
+  flatQ[sec] = [];
+
+  // Intro
+  const ic = document.createElement('div');
+  ic.className = 'intro-card';
+  ic.style.borderLeftColor = S.introColor;
+  ic.innerHTML = `<h3>${S.intro.title}</h3><p>${S.intro.text}</p>
+    <ul class="goals-list">${S.intro.goals.map(g=>`<li>${g}</li>`).join('')}</ul>`;
+  panel.appendChild(ic);
+
+  let gIdx = 0;
+  S.groups.forEach((grp, gi) => {
+    grp.qs.forEach((qObj, qi) => {
+      const idx = flatQ[sec].length;
+      flatQ[sec].push({correctAns: qObj.ans, qText: qObj.q, opts: qObj.opts});
+      userAnswers[sec][idx] = null;
+
+      const card = document.createElement('div');
+      card.className = `q-card ${COLORS[(gi * 2 + qi) % 8]}`;
+      card.id = `card-${sec}-${idx}`;
+
+      const sitBlock = qi === 0
+        ? `<div class="case-title-row">${grp.title} <span class="case-badge">${grp.badge}</span></div>
+           <div class="case-situation">${grp.sit}</div>`
+        : '';
+
+      const optsHTML = qObj.opts.map((opt, oi) =>
+        `<button class="opt-btn" id="opt-${sec}-${idx}-${oi}" onclick="pick('${sec}',${idx},${oi})">
+           <span class="opt-letter">${LETTERS[oi]}</span><span>${opt}</span>
+         </button>`
+      ).join('');
+
+      card.innerHTML = `${sitBlock}
+        <div class="q-label" id="qlabel-${sec}-${idx}">Сұрақ ${idx+1}</div>
+        <div class="q-text">${qObj.q}</div>
+        <div class="options">${optsHTML}</div>`;
+      panel.appendChild(card);
+    });
+  });
+
+  // Reveal button
+  const rb = document.createElement('div');
+  rb.className = 'reveal-bar';
+  rb.innerHTML = `<button class="reveal-btn ${S.revClass}" id="reveal-${sec}" onclick="revealSection('${sec}')">
+    📋 Нәтижені білу</button>`;
+  panel.appendChild(rb);
+}
+
+['math','logic','lang'].forEach(s => build(s));
+
+// ─── TAB ─────────────────────────────────────
+function switchTab(tab) {
+  currentSection = tab;
+  document.querySelectorAll('.section-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+tab).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector('.tab-btn.'+tab).classList.add('active');
+  updateProg();
+}
+
+// ─── PICK ─────────────────────────────────────
+function pick(sec, idx, opt) {
+  if (revealed[sec]) return;
+  userAnswers[sec][idx] = opt;
+  for (let oi=0;oi<4;oi++){
+    const b=document.getElementById(`opt-${sec}-${idx}-${oi}`);
+    if(b) b.classList.remove('selected');
+  }
+  const chosen=document.getElementById(`opt-${sec}-${idx}-${opt}`);
+  if(chosen) chosen.classList.add('selected');
+  const lbl=document.getElementById(`qlabel-${sec}-${idx}`);
+  if(lbl) lbl.classList.add('done');
+  updateProg();
+}
+
+// ─── PROGRESS ────────────────────────────────
+function updateProg() {
+  const sec = currentSection;
+  const total = flatQ[sec].length;
+  const answered = Object.values(userAnswers[sec]).filter(v=>v!==null).length;
+  const pct = total ? Math.round(answered/total*100) : 0;
+  document.getElementById('progLabel').textContent = `${answered} / ${total} сұрақ жауапталды`;
+  document.getElementById('progPct').textContent = pct+'%';
+  document.getElementById('progFill').style.width = pct+'%';
+}
+
+// ─── REVEAL ──────────────────────────────────
+function revealSection(sec) {
+  revealed[sec] = true;
+  const qs = flatQ[sec];
+  let score = 0;
+  qs.forEach((q, idx) => {
+    const ua = userAnswers[sec][idx];
+    const ca = q.correctAns;
+    for(let oi=0;oi<4;oi++){
+      const btn=document.getElementById(`opt-${sec}-${idx}-${oi}`);
+      if(!btn) continue;
+      btn.classList.remove('selected');
+      btn.classList.add('locked');
+      if(oi===ca) btn.classList.add('correct');
+      else if(oi===ua && ua!==ca) btn.classList.add('wrong');
+    }
+    if(ua===ca) score++;
+  });
+  const rb=document.getElementById('reveal-'+sec);
+  if(rb) rb.disabled=true;
+  showModal(score, qs.length, sec);
+  if(score/qs.length>=0.5) spawnConfetti();
+}
+
+// ─── MODAL ───────────────────────────────────
+function showModal(score, total, sec) {
+  const pct = total ? score/total : 0;
+  const pctVal = Math.round(pct*100);
+  let emoji, fb;
+  if(pct>=0.9){emoji='🏆';fb='Керемет! Сен үздіксің!';}
+  else if(pct>=0.7){emoji='🌟';fb='Жақсы! Одан да жақсы болады!';}
+  else if(pct>=0.5){emoji='👍';fb='Орташа нәтиже. Тағы бір рет қайтала!';}
+  else{emoji='📚';fb='Тағы бір рет оқып шық, сен аласың!';}
+
+  // Build result rows
+  const rows = flatQ[sec].map((q, idx)=>{
+    const ok = userAnswers[sec][idx]===q.correctAns;
+    const ua = userAnswers[sec][idx];
+    const uaText = ua!==null ? LETTERS[ua]+') '+q.opts[ua] : 'Жауапсыз';
+    const caText = LETTERS[q.correctAns]+') '+q.opts[q.correctAns];
+    return `<div class="q-result-row">
+      <div class="ri ${ok?'ok':'no'}">${ok?'✓':'✗'}</div>
+      <div>
+        <b>Сұрақ ${idx+1}:</b> ${ok
+          ? '<span style="color:#059669">Дұрыс ✅</span>'
+          : `<span style="color:#dc2626">Қате ❌</span> — Дұрыс жауап: <b>${caText}</b>`}
+      </div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('modalEmoji').textContent = emoji;
+  document.getElementById('modalTitle').textContent = SECTIONS[sec].label+' — Нәтиже';
+  document.getElementById('modalScore').textContent = `${score}/${total}`;
+  document.getElementById('modalSub').textContent = `балл (${pctVal}%)`;
+  document.getElementById('modalResults').innerHTML = rows;
+  document.getElementById('modalFeedback').textContent = fb;
+
+  const bar = document.getElementById('modalBar');
+  bar.style.width = '0%';
+  bar.className = 'modal-prog-fill '+(pct>=0.7?'high':pct>=0.5?'mid':'low');
+  setTimeout(()=>{ bar.style.width = pctVal+'%'; }, 150);
+
+  document.getElementById('scoreModal').classList.add('show');
+}
+
+function closeModal(){
+  document.getElementById('scoreModal').classList.remove('show');
+}
+
+// ─── CONFETTI ─────────────────────────────────
+function spawnConfetti(){
+  const colors=['#FF6B9D','#A855F7','#3A86FF','#FFD93D','#00C9A7','#FF8C42'];
+  for(let i=0;i<80;i++){
+    const el=document.createElement('div');
+    el.className='confetti-particle';
+    el.style.left=Math.random()*100+'vw';
+    el.style.top='-20px';
+    el.style.background=colors[Math.floor(Math.random()*colors.length)];
+    el.style.width=(6+Math.random()*8)+'px';
+    el.style.height=(6+Math.random()*8)+'px';
+    el.style.animationDuration=(1.5+Math.random()*2.5)+'s';
+    el.style.animationDelay=(Math.random()*1.2)+'s';
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),5000);
+  }
+}
+
+// ─── SPARKLES ─────────────────────────────────
+(function(){
+  const s=document.createElement('style');
+  s.textContent=`@keyframes starFloat{0%{transform:translateY(0) scale(0);opacity:1}100%{transform:translateY(-80px) scale(1.4);opacity:0}}`;
+  document.head.appendChild(s);
+  setInterval(()=>{
+    const n=3+Math.floor(Math.random()*4);
+    for(let i=0;i<n;i++){
+      const el=document.createElement('div');
+      el.textContent=['⭐','✨','🌟','💫'][Math.floor(Math.random()*4)];
+      Object.assign(el.style,{position:'fixed',left:(15+Math.random()*70)+'vw',
+        top:(20+Math.random()*60)+'vh',fontSize:(.8+Math.random())+'rem',zIndex:50,
+        pointerEvents:'none',animation:`starFloat ${1+Math.random()}s ease-out forwards`,
+        animationDelay:(Math.random()*.4)+'s'});
+      document.body.appendChild(el);
+      setTimeout(()=>el.remove(),2000);
+    }
+  },4000);
+})();
+
+updateProg();
+appendFeedback();
+</script>
+</body>
+</html>
